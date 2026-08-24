@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: gentech3-preview
+    env: static
+    buildCommand: ""
+    staticPublishPath: .
