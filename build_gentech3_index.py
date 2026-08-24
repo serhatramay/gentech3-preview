@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+import os
+from generate_all_pages import get_footer
+
+index_html = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -589,92 +592,10 @@
     </section>
 
 </main>
+"""
+index_html += get_footer().replace('<script src="assets/js/app.js?v=12.0"></script>', '<script src="assets/js/scene3d.js?v=12.0"></script>\n<script src="assets/js/app.js?v=12.0"></script>')
 
-<footer class="footer-serene">
-    <div class="container">
-        <div class="footer-top-grid">
-            <div class="footer-col-main">
-                <div class="nav-brand" style="margin-bottom: 1rem;">
-                    <div class="nav-brand-dot"></div>
-                    <div class="brand-text">
-                        <span class="brand-title">GENTECH</span>
-                        <span class="brand-sub">GLOBAL LLC</span>
-                    </div>
-                </div>
-                <p style="font-size: 0.9rem; color: #B8ADA5; max-width: 320px; line-height: 1.6;">
-                    Innovative technology house founded in Dubai (Q1 2025). Specializing in payment systems, precious metal cards, 5G SIMs, and wearable payment technologies.
-                </p>
-                <div style="font-size: 0.85rem; color: #8C8077; margin-top: 1rem;">
-                    Ras Al Khaimah Economic Zone, Dubai, UAE • <a href="mailto:info@gentech.ae" style="color: #EB651A;">info@gentech.ae</a>
-                </div>
-            </div>
+with open('/Users/ramay/gentech3-app/index.html', 'w', encoding='utf-8') as f:
+    f.write(index_html)
 
-            <div class="footer-col">
-                <h4 class="footer-title">Services (9)</h4>
-                <ul class="footer-list">
-                    <li><a href="emvcards.html">Smart &amp; EMV Cards</a></li>
-                    <li><a href="metalcards.html">Metal &amp; Titanium Cards</a></li>
-                    <li><a href="ceramiccards.html">Ceramic Cards</a></li>
-                    <li><a href="chipmodules.html">Custom Chip Modules</a></li>
-                    <li><a href="wearable.html">Wearable Payment Devices</a></li>
-                    <li><a href="transport.html">Transport &amp; City Cards</a></li>
-                    <li><a href="telecom.html">Telecommunications (5G SIM)</a></li>
-                    <li><a href="hardware.html">Banking Hardware &amp; POS</a></li>
-                    <li><a href="chip.html">Card &amp; Chip Integration</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4 class="footer-title">Products (7 Categories)</h4>
-                <ul class="footer-list">
-                    <li><a href="products.html">PVC &amp; Shell Foil Cards</a></li>
-                    <li><a href="products.html">Titanium Monolith Cards</a></li>
-                    <li><a href="products.html">Zirconia Ceramic Cards</a></li>
-                    <li><a href="products.html">Super NFC 5G SIM</a></li>
-                    <li><a href="products.html">Contactless Payment Stickers</a></li>
-                    <li><a href="products.html">Smart Health Ceramic Rings</a></li>
-                    <li><a href="products.html">Smart Ceramic Wristbands</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4 class="footer-title">Corporate &amp; Legal</h4>
-                <ul class="footer-list">
-                    <li><a href="about.html">About GenTech Global</a></li>
-                    <li><a href="about.html#mission">Mission &amp; Vision</a></li>
-                    <li><a href="about.html#pillars">6 Corporate Pillars</a></li>
-                    <li><a href="index.html#configurator">3D Card Studio</a></li>
-                    <li><a href="index.html#weight">Physical Gravitas Specs</a></li>
-                    <li><a href="contact.html">Contact &amp; Dubai Desk</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-compliance-bar">
-            <div style="font-size: 0.82rem; font-weight: 700; color: var(--accent-hermes); text-transform: uppercase; letter-spacing: 0.05em;">
-                Global Standards Compliance:
-            </div>
-            <div class="footer-standards-list">
-                <span>EMVCo Level 1 &amp; 2</span>
-                <span>PCI-DSS Level 1</span>
-                <span>ISO/IEC 7810</span>
-                <span>ISO/IEC 7811</span>
-                <span>ISO/IEC 7813</span>
-                <span>ISO/IEC 14443 Type A/B</span>
-                <span>MIFARE &amp; FeliCa</span>
-                <span>GSMA 5G Standalone</span>
-            </div>
-        </div>
-
-        <div class="footer-bottom-row">
-            <div>&copy; 2025–2026 GenTech Global LLC. All rights reserved. Registered in RAKEZ, Dubai, United Arab Emirates.</div>
-            <div>GenTech 3 • Serene Hermes Warm Light Suite</div>
-        </div>
-    </div>
-</footer>
-
-<!-- Scripts -->
-<script src="assets/js/scene3d.js?v=12.0"></script>
-<script src="assets/js/app.js?v=12.0"></script>
-</body>
-</html>
+print("Updated index.html with multi-page navigation successfully!")
