@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+import os
+
+index_html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1210,3 +1212,9 @@
 <script src="assets/js/app.js?v=10.0"></script>
 </body>
 </html>
+"""
+
+with open('/Users/ramay/gentech3-app/index.html', 'w', encoding='utf-8') as f:
+    f.write(index_html_content)
+
+print("index.html successfully updated!")

@@ -1,4 +1,6 @@
-/* ==========================================================================
+import os
+
+css_content = """/* ==========================================================================
    GENTECH 3 - MASTER HERMES WARM LIGHT EDITION
    With PCB Micro-Circuit Matrix & Sovereign Luxury Typography
    ========================================================================== */
@@ -1284,3 +1286,9 @@ img { max-width: 100%; height: auto; display: block; }
 .modal-specs-table td {
   color: var(--text-muted);
 }
+"""
+
+with open('/Users/ramay/gentech3-app/assets/css/style.css', 'w', encoding='utf-8') as f:
+    f.write(css_content)
+
+print("style.css successfully updated!")

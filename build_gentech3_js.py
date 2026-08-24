@@ -1,4 +1,6 @@
-/**
+import os
+
+js_content = """/**
  * GenTech 3 Master Controller
  * Handles 3D toggles, live configurator, category filtering, and technical modal dialogs
  */
@@ -273,3 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+"""
+
+with open('/Users/ramay/gentech3-app/assets/js/app.js', 'w', encoding='utf-8') as f:
+    f.write(js_content)
+
+print("app.js successfully updated!")
