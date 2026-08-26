@@ -998,16 +998,63 @@ img { max-width: 100%; height: auto; display: block; }
 .live-card-mockup {
   width: 100%;
   max-width: 440px;
-  height: 260px;
-  border-radius: 18px;
-  padding: 1.75rem;
+  aspect-ratio: 1.586 / 1;
+  height: auto;
+  border-radius: clamp(12px, 3vw, 18px);
+  padding: clamp(1rem, 3.8vw, 1.75rem);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 0 auto;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.22);
   position: relative;
   transition: all 0.4s ease;
+  box-sizing: border-box;
+}
+
+.live-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.live-card-brand {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.live-card-bottom {
+  text-align: left;
+  width: 100%;
+}
+
+.live-card-label {
+  font-size: clamp(0.62rem, 2vw, 0.75rem);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.live-card-name {
+  font-size: clamp(0.95rem, 3.6vw, 1.25rem);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.live-card-serial {
+  font-family: var(--font-mono);
+  font-size: clamp(0.68rem, 2.2vw, 0.8rem);
+  opacity: 0.75;
+  margin-top: 0.25rem;
 }
 
 .live-card-mockup.ceramic {
@@ -1041,8 +1088,8 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .chip-graphic {
-  width: 54px;
-  height: 42px;
+  width: clamp(42px, 10vw, 54px);
+  height: clamp(32px, 8vw, 42px);
   border-radius: 8px;
   background: linear-gradient(135deg, #E5C158, #BF9526, #FFD868);
   border: 1px solid #85640E;
