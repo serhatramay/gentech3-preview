@@ -98,11 +98,10 @@ index_html = """<!DOCTYPE html>
                     </div>
 
                     <!-- Card Finish Sub-toolbar -->
-                    <div class="finish-selector" id="cardFinishSelector" style="display: none;">
+                    <div class="finish-selector hidden" id="cardFinishSelector">
                         <button class="finish-pill-btn card-finish-btn active" data-card-finish="stealth">Stealth Black</button>
                         <button class="finish-pill-btn card-finish-btn" data-card-finish="titanium">Pale Titanium</button>
                         <button class="finish-pill-btn card-finish-btn" data-card-finish="gold">24K Mirror Gold</button>
-                        <button class="finish-pill-btn card-finish-btn" data-card-finish="ceramic">Hermes Ceramic</button>
                     </div>
                 </div>
             </div>

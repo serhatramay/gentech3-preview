@@ -16,11 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const art = btn.getAttribute('data-artifact');
       
       if (art === 'ring') {
-        if (ringFinishSelector) ringFinishSelector.style.display = 'flex';
-        if (cardFinishSelector) cardFinishSelector.style.display = 'none';
+        if (ringFinishSelector) ringFinishSelector.classList.remove('hidden');
+        if (cardFinishSelector) cardFinishSelector.classList.add('hidden');
       } else {
-        if (ringFinishSelector) ringFinishSelector.style.display = 'none';
-        if (cardFinishSelector) cardFinishSelector.style.display = 'flex';
+        if (ringFinishSelector) ringFinishSelector.classList.add('hidden');
+        if (cardFinishSelector) cardFinishSelector.classList.remove('hidden');
       }
       
       if (typeof setActiveArtifact === 'function') setActiveArtifact(art);
