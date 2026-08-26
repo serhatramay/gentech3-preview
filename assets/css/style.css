@@ -301,10 +301,6 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .hero-3d-box { height: 420px; }
-}
-
 #canvas3D {
   width: 100%;
   height: 100%;
@@ -319,15 +315,20 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.4rem 0.65rem;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-light);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   max-width: 95%;
-  flex-wrap: wrap;
-  justify-content: center;
+  z-index: 10;
+}
+
+.artifact-toggle-group {
+  display: flex;
+  gap: 0.35rem;
 }
 
 .toolbar-btn {
@@ -336,12 +337,17 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .toolbar-btn.active {
   background: var(--accent-hermes);
   color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(235, 101, 26, 0.3);
 }
 
 .finish-selector {
@@ -359,7 +365,9 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--bg-primary);
   color: var(--text-muted);
   border: 1px solid var(--border-light);
+  cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .finish-pill-btn.active {
@@ -372,6 +380,72 @@ img { max-width: 100%; height: auto; display: block; }
   font-size: 0.85rem;
   color: var(--text-muted);
   margin-top: 1.25rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .hero-3d-box {
+    height: 480px;
+    border-radius: 16px;
+  }
+
+  .studio-toolbar {
+    bottom: 12px;
+    width: calc(100% - 24px);
+    max-width: 360px;
+    padding: 0.45rem 0.5rem;
+    border-radius: 14px;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .artifact-toggle-group {
+    width: 100%;
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .artifact-toggle-group .toolbar-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.42rem 0.4rem;
+    font-size: 0.76rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .finish-selector {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.25rem;
+    padding-left: 0;
+    border-left: none;
+    padding-top: 0.4rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .finish-pill-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.35rem 0.3rem;
+    font-size: 0.68rem;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-hint {
+    font-size: 0.76rem;
+    line-height: 1.45;
+    padding: 0 0.75rem;
+    margin-top: 1rem;
+  }
 }
 
 /* Trust Badges */
