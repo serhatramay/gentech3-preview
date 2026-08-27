@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>GenTech Global LLC | Sovereign Payment Systems, Concave Smart Rings & Titanium Metal Cards</title>
     <meta name="description" content="GenTech Global LLC - Dubai-based pioneer in wearable payment technologies, 28.5g solid titanium cards, 5G Super SIMs, POS hardware, and municipal transit solutions.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Three.js 3D WebGL Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Google Fonts Non-blocking Preload -->
+    <link rel=preconnect href="https://fonts.googleapis.com">
+    <link rel=preconnect href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=14.0">
+    <link rel="stylesheet" href="assets/css/style.css?v=15.0">
 </head>
 <body>
 
@@ -86,22 +86,22 @@
                 <div id="canvas3D"></div>
                 <div class="studio-toolbar">
                     <div class="artifact-toggle-group">
-                        <button class="toolbar-btn active artifact-toggle-btn" data-artifact="ring">💍 Galaxy Smart Ring</button>
-                        <button class="toolbar-btn artifact-toggle-btn" data-artifact="card">💳 Titanium Card</button>
+                        <button class="toolbar-btn active artifact-toggle-btn" data-artifact="ring" aria-label="View Galaxy Smart Ring 3D">💍 Galaxy Smart Ring</button>
+                        <button class="toolbar-btn artifact-toggle-btn" data-artifact="card" aria-label="View Titanium Card 3D">💳 Titanium Card</button>
                     </div>
                     
                     <!-- Ring Finish Sub-toolbar -->
                     <div class="finish-selector" id="ringFinishSelector">
-                        <button class="finish-pill-btn ring-finish-btn active" data-finish="silver">Titanium Silver</button>
-                        <button class="finish-pill-btn ring-finish-btn" data-finish="black">Titanium Black</button>
-                        <button class="finish-pill-btn ring-finish-btn" data-finish="gold">Titanium Gold</button>
+                        <button class="finish-pill-btn ring-finish-btn active" data-finish="silver" aria-label="Titanium Silver finish">Titanium Silver</button>
+                        <button class="finish-pill-btn ring-finish-btn" data-finish="black" aria-label="Titanium Black finish">Titanium Black</button>
+                        <button class="finish-pill-btn ring-finish-btn" data-finish="gold" aria-label="Titanium Gold finish">Titanium Gold</button>
                     </div>
 
                     <!-- Card Finish Sub-toolbar -->
                     <div class="finish-selector hidden" id="cardFinishSelector">
-                        <button class="finish-pill-btn card-finish-btn active" data-card-finish="stealth">Stealth Black</button>
-                        <button class="finish-pill-btn card-finish-btn" data-card-finish="titanium">Pale Titanium</button>
-                        <button class="finish-pill-btn card-finish-btn" data-card-finish="gold">24K Mirror Gold</button>
+                        <button class="finish-pill-btn card-finish-btn active" data-card-finish="stealth" aria-label="Stealth Black finish">Stealth Black</button>
+                        <button class="finish-pill-btn card-finish-btn" data-card-finish="titanium" aria-label="Pale Titanium finish">Pale Titanium</button>
+                        <button class="finish-pill-btn card-finish-btn" data-card-finish="gold" aria-label="24K Mirror Gold finish">24K Mirror Gold</button>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@
             <div class="about-hero-grid">
                 <div class="about-story-card">
                     <div class="about-img-box">
-                        <img src="assets/images/about.png" alt="GenTech Global Dubai HQ" class="about-img">
+                        <img src="assets/images/about.webp" alt="GenTech Global Dubai HQ" class="about-img" loading="lazy" decoding="async" width="800" height="800">
                     </div>
                     <div class="about-story-content">
                         <h3 class="serif-title">Engineered in Dubai for Sovereign Institutions</h3>
@@ -221,7 +221,7 @@
                 <!-- Service 1 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-1.jpg" alt="Smart & EMV Cards">
+                        <img src="assets/images/service-1.webp" alt="Smart & EMV Cards" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">Core Banking</span>
                     </div>
                     <div class="service-body">
@@ -234,7 +234,7 @@
                 <!-- Service 2 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-7.jpg" alt="Metal Cards">
+                        <img src="assets/images/service-7.webp" alt="Metal Cards" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">Tactile Luxury</span>
                     </div>
                     <div class="service-body">
@@ -247,7 +247,7 @@
                 <!-- Service 3 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-8.jpg" alt="Ceramic Cards">
+                        <img src="assets/images/service-8.webp" alt="Ceramic Cards" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">High Precision</span>
                     </div>
                     <div class="service-body">
@@ -260,7 +260,7 @@
                 <!-- Service 4 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-9.jpg" alt="Chip Modules">
+                        <img src="assets/images/service-9.webp" alt="Chip Modules" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">Artisan Hardware</span>
                     </div>
                     <div class="service-body">
@@ -273,7 +273,7 @@
                 <!-- Service 5 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-2.jpg" alt="Wearable Payment Devices">
+                        <img src="assets/images/service-2.webp" alt="Wearable Payment Devices" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">Biometrics & NFC</span>
                     </div>
                     <div class="service-body">
@@ -286,7 +286,7 @@
                 <!-- Service 6 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-3.jpg" alt="Transport & City Cards">
+                        <img src="assets/images/service-3.webp" alt="Transport & City Cards" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">Smart Mobility</span>
                     </div>
                     <div class="service-body">
@@ -299,7 +299,7 @@
                 <!-- Service 7 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-4.jpg" alt="Telecommunications">
+                        <img src="assets/images/service-4.webp" alt="Telecommunications" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">5G & IoT</span>
                     </div>
                     <div class="service-body">
@@ -312,7 +312,7 @@
                 <!-- Service 8 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-5.jpg" alt="Banking Hardware">
+                        <img src="assets/images/service-5.webp" alt="Banking Hardware" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">Terminal Fleet</span>
                     </div>
                     <div class="service-body">
@@ -325,7 +325,7 @@
                 <!-- Service 9 -->
                 <div class="service-card-item">
                     <div class="service-img-wrap">
-                        <img src="assets/images/service-6.jpg" alt="Card & Chip Integration">
+                        <img src="assets/images/service-6.webp" alt="Card & Chip Integration" loading="lazy" decoding="async" width="500" height="300">
                         <span class="service-tag">Personalization</span>
                     </div>
                     <div class="service-body">
@@ -369,7 +369,7 @@
                 <!-- Item 1 (PVC) -->
                 <div class="product-item-card" data-category="pvc">
                     <div class="product-img-box">
-                        <img src="assets/images/portfolio-1.png" alt="Shell Foil PVC Card" class="product-img">
+                        <img src="assets/images/portfolio-1.webp" alt="Shell Foil PVC Card" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                         <span class="product-badge">PVC Card</span>
                     </div>
                     <div class="product-info">
@@ -384,7 +384,7 @@
                 <!-- Item 2 (Metal) -->
                 <div class="product-item-card" data-category="metal">
                     <div class="product-img-box">
-                        <img src="assets/images/portfolio-3.png" alt="Titanium Cards" class="product-img">
+                        <img src="assets/images/portfolio-3.webp" alt="Titanium Cards" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                         <span class="product-badge">Metal Card</span>
                     </div>
                     <div class="product-info">
@@ -399,7 +399,7 @@
                 <!-- Item 3 (Ceramic) -->
                 <div class="product-item-card" data-category="ceramic">
                     <div class="product-img-box">
-                        <img src="assets/images/portfolio-20.png" alt="Ceramic Credit Card" class="product-img">
+                        <img src="assets/images/portfolio-20.webp" alt="Ceramic Credit Card" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                         <span class="product-badge">Ceramic Card</span>
                     </div>
                     <div class="product-info">
@@ -414,7 +414,7 @@
                 <!-- Item 4 (SIM) -->
                 <div class="product-item-card" data-category="sim">
                     <div class="product-img-box">
-                        <img src="assets/images/portfolio-12.png" alt="Super NFC SIM" class="product-img">
+                        <img src="assets/images/portfolio-12.webp" alt="Super NFC SIM" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                         <span class="product-badge">GSM / 5G SIM</span>
                     </div>
                     <div class="product-info">
@@ -429,7 +429,7 @@
                 <!-- Item 5 (Ring) -->
                 <div class="product-item-card" data-category="ring">
                     <div class="product-img-box">
-                        <img src="assets/images/portfolio-6.png" alt="Smart Health Ceramic Ring Black" class="product-img">
+                        <img src="assets/images/portfolio-6.webp" alt="Smart Health Ceramic Ring Black" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                         <span class="product-badge">Smart Ring</span>
                     </div>
                     <div class="product-info">
@@ -444,7 +444,7 @@
                 <!-- Item 6 (Wristband) -->
                 <div class="product-item-card" data-category="wristband">
                     <div class="product-img-box">
-                        <img src="assets/images/portfolio-13.png" alt="Smart Ceramic Wristband" class="product-img">
+                        <img src="assets/images/portfolio-13.webp" alt="Smart Ceramic Wristband" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                         <span class="product-badge">Smart Wristband</span>
                     </div>
                     <div class="product-info">
@@ -459,7 +459,7 @@
                 <!-- Item 7 (Metal) -->
                 <div class="product-item-card" data-category="metal">
                     <div class="product-img-box">
-                        <img src="assets/images/portfolio-4.png" alt="Stainless Steel Card" class="product-img">
+                        <img src="assets/images/portfolio-4.webp" alt="Stainless Steel Card" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                         <span class="product-badge">Metal Card</span>
                     </div>
                     <div class="product-info">
@@ -474,7 +474,7 @@
                 <!-- Item 8 (Sticker) -->
                 <div class="product-item-card" data-category="sticker">
                     <div class="product-img-box">
-                        <img src="assets/images/portfolio-21.png" alt="NFC Payment Sticker" class="product-img">
+                        <img src="assets/images/portfolio-21.webp" alt="NFC Payment Sticker" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                         <span class="product-badge">Sticker</span>
                     </div>
                     <div class="product-info">
@@ -606,7 +606,7 @@
                 <p style="font-size: 0.9rem; color: #B8ADA5; max-width: 320px; line-height: 1.6;">
                     Innovative technology house founded in Dubai (Q1 2025). Specializing in payment systems, precious metal cards, 5G SIMs, and wearable payment technologies.
                 </p>
-                <div style="font-size: 0.85rem; color: #8C8077; margin-top: 1rem;">
+                <div style="font-size: 0.85rem; color: #A89C94; margin-top: 1rem;">
                     Ras Al Khaimah Economic Zone, Dubai, UAE • <a href="mailto:info@gentech.ae" style="color: #EB651A;">info@gentech.ae</a>
                 </div>
             </div>
@@ -676,7 +676,8 @@
 </footer>
 
 <!-- Scripts -->
-<script src="assets/js/scene3d.js?v=14.0"></script>
-<script src="assets/js/app.js?v=14.0"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script defer src="assets/js/scene3d.js?v=15.0"></script>
+<script defer src="assets/js/app.js?v=15.0"></script>
 </body>
 </html>

@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Metal & Titanium Cards | GenTech Global LLC</title>
     <meta name="description" content="28.5g solid Grade-5 titanium monoliths and stainless steel bank cards.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts Non-blocking Preload -->
+    <link rel=preconnect href="https://fonts.googleapis.com">
+    <link rel=preconnect href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
     
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=14.0">
+    <link rel="stylesheet" href="assets/css/style.css?v=15.0">
 </head>
 <body>
 
@@ -85,7 +88,7 @@
                 </p>
 
                 <div class="detail-img-box" style="margin: 2rem 0; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-light);">
-                    <img src="assets/images/metalcard.png" alt="Metal Card Monolith" style="width: 100%;">
+                    <img src="assets/images/metalcard.webp" alt="Metal Card Monolith" style="width: 100%;" loading="lazy" decoding="async" width="881" height="316">
                 </div>
 
                 <h3 class="serif-title" style="margin-top: 2rem; margin-bottom: 1rem;">Color Metallurgies &amp; Surface Finishes</h3>
@@ -93,7 +96,7 @@
                     Our PVD (Physical Vapor Deposition) and electro-chemical coating facilities provide stunning metallic hues:
                 </p>
                 <div style="margin: 1.5rem 0;">
-                    <img src="assets/images/metalcolor.png" alt="Metal Finishes" style="border-radius: var(--radius-md); border: 1px solid var(--border-light); max-width: 500px;">
+                    <img src="assets/images/metalcolor.webp" alt="Metal Finishes" style="border-radius: var(--radius-md); border: 1px solid var(--border-light); max-width: 500px;" loading="lazy" decoding="async" width="500" height="400">
                 </div>
 
                 <div class="pillars-grid-6" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 2.5rem;">
@@ -150,7 +153,7 @@
                 <p style="font-size: 0.9rem; color: #B8ADA5; max-width: 320px; line-height: 1.6;">
                     Innovative technology house founded in Dubai (Q1 2025). Specializing in payment systems, precious metal cards, 5G SIMs, and wearable payment technologies.
                 </p>
-                <div style="font-size: 0.85rem; color: #8C8077; margin-top: 1rem;">
+                <div style="font-size: 0.85rem; color: #A89C94; margin-top: 1rem;">
                     Ras Al Khaimah Economic Zone, Dubai, UAE • <a href="mailto:info@gentech.ae" style="color: #EB651A;">info@gentech.ae</a>
                 </div>
             </div>
@@ -220,6 +223,6 @@
 </footer>
 
 <!-- Scripts -->
-<script src="assets/js/app.js?v=12.0"></script>
+<script defer src="assets/js/app.js?v=15.0"></script>
 </body>
 </html>

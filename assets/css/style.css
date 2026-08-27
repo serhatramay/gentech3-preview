@@ -13,7 +13,7 @@
   
   --text-main: #1A130E;
   --text-muted: #6E6056;
-  --text-dim: #9C8E84;
+  --text-dim: #7A6C62;
   
   /* Hermes & Luxury Accents */
   --accent-hermes: #EB651A;
@@ -139,7 +139,7 @@ img { max-width: 100%; height: auto; display: block; }
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: rgba(235, 101, 26, 0.09);
-  color: #C85A17;
+  color: #B84E10;
   border: 1px solid rgba(235, 101, 26, 0.25);
   margin-bottom: 1.25rem;
 }
@@ -1262,7 +1262,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .footer-top-grid .brand-title { color: #FFFFFF; }
-.footer-top-grid .brand-sub { color: #FFA366; }
+.footer-top-grid .brand-sub { color: #FFB380; }
 
 .footer-title {
   font-size: 0.95rem;
@@ -1315,7 +1315,7 @@ img { max-width: 100%; height: auto; display: block; }
   align-items: center;
   padding-top: 1.5rem;
   font-size: 0.8rem;
-  color: #8C8077;
+  color: #A89C94;
   flex-wrap: wrap;
   gap: 1rem;
 }

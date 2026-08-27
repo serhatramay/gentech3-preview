@@ -585,6 +585,16 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  if (typeof THREE !== 'undefined') init3DScene();
-});
+function tryInit3D() {
+  if (typeof THREE !== 'undefined' && document.getElementById('canvas3D')) {
+    init3DScene();
+  } else if (document.getElementById('canvas3D')) {
+    setTimeout(tryInit3D, 50);
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', tryInit3D);
+} else {
+  tryInit3D();
+}

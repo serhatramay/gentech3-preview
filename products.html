@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Our Products Catalog | GenTech Global LLC</title>
     <meta name="description" content="Explore 22+ certified smart cards, titanium monoliths, ceramic rings, and 5G SIM cards.">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts Non-blocking Preload -->
+    <link rel=preconnect href="https://fonts.googleapis.com">
+    <link rel=preconnect href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    </noscript>
     
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=14.0">
+    <link rel="stylesheet" href="assets/css/style.css?v=15.0">
 </head>
 <body>
 
@@ -81,14 +84,14 @@
 
         <!-- Filter Navigation Bar -->
         <div class="portfolio-filter-container">
-            <button class="filter-btn active" data-filter="all">All Products (22)</button>
-            <button class="filter-btn" data-filter="pvc">PVC Cards</button>
-            <button class="filter-btn" data-filter="metal">Metal Cards</button>
-            <button class="filter-btn" data-filter="ceramic">Ceramic Cards</button>
-            <button class="filter-btn" data-filter="sim">GSM &amp; 5G SIM</button>
-            <button class="filter-btn" data-filter="sticker">Payment Stickers</button>
-            <button class="filter-btn" data-filter="ring">Smart Rings</button>
-            <button class="filter-btn" data-filter="wristband">Smart Wristbands</button>
+            <button class="filter-btn active" data-filter="all" aria-label="Filter All Products (22)">All Products (22)</button>
+            <button class="filter-btn" data-filter="pvc" aria-label="Filter PVC Cards">PVC Cards</button>
+            <button class="filter-btn" data-filter="metal" aria-label="Filter Metal Cards">Metal Cards</button>
+            <button class="filter-btn" data-filter="ceramic" aria-label="Filter Ceramic Cards">Ceramic Cards</button>
+            <button class="filter-btn" data-filter="sim" aria-label="Filter GSM &amp; 5G SIM">GSM &amp; 5G SIM</button>
+            <button class="filter-btn" data-filter="sticker" aria-label="Filter Payment Stickers">Payment Stickers</button>
+            <button class="filter-btn" data-filter="ring" aria-label="Filter Smart Rings">Smart Rings</button>
+            <button class="filter-btn" data-filter="wristband" aria-label="Filter Smart Wristbands">Smart Wristbands</button>
         </div>
 
         <!-- Products Grid (22 Items) -->
@@ -97,7 +100,7 @@
             <!-- Item 1 (PVC) -->
             <div class="product-item-card" data-category="pvc">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-1.png" alt="Shell Foil PVC Card" class="product-img">
+                    <img src="assets/images/portfolio-1.webp" alt="Shell Foil PVC Card" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">PVC Card</span>
                 </div>
                 <div class="product-info">
@@ -112,7 +115,7 @@
             <!-- Item 2 (PVC) -->
             <div class="product-item-card" data-category="pvc">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-2.png" alt="Shell Foil PVC Card Pattern" class="product-img">
+                    <img src="assets/images/portfolio-2.webp" alt="Shell Foil PVC Card Pattern" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">PVC Card</span>
                 </div>
                 <div class="product-info">
@@ -127,7 +130,7 @@
             <!-- Item 3 (Metal) -->
             <div class="product-item-card" data-category="metal">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-3.png" alt="Titanium Cards" class="product-img">
+                    <img src="assets/images/portfolio-3.webp" alt="Titanium Cards" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Metal Card</span>
                 </div>
                 <div class="product-info">
@@ -142,7 +145,7 @@
             <!-- Item 4 (Metal) -->
             <div class="product-item-card" data-category="metal">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-4.png" alt="Stainless Steel Card" class="product-img">
+                    <img src="assets/images/portfolio-4.webp" alt="Stainless Steel Card" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Metal Card</span>
                 </div>
                 <div class="product-info">
@@ -157,7 +160,7 @@
             <!-- Item 5 (Metal) -->
             <div class="product-item-card" data-category="metal">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-5.png" alt="Stealth Metal Card" class="product-img">
+                    <img src="assets/images/portfolio-5.webp" alt="Stealth Metal Card" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Metal Card</span>
                 </div>
                 <div class="product-info">
@@ -172,7 +175,7 @@
             <!-- Item 6 (Ceramic) -->
             <div class="product-item-card" data-category="ceramic">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-20.png" alt="Ceramic Credit Card" class="product-img">
+                    <img src="assets/images/portfolio-20.webp" alt="Ceramic Credit Card" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Ceramic Card</span>
                 </div>
                 <div class="product-info">
@@ -187,7 +190,7 @@
             <!-- Item 7 (Ceramic) -->
             <div class="product-item-card" data-category="ceramic">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-19.png" alt="Ceramic Cards Alumina" class="product-img">
+                    <img src="assets/images/portfolio-19.webp" alt="Ceramic Cards Alumina" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Ceramic Card</span>
                 </div>
                 <div class="product-info">
@@ -202,7 +205,7 @@
             <!-- Item 8 (SIM) -->
             <div class="product-item-card" data-category="sim">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-12.png" alt="Super NFC SIM" class="product-img">
+                    <img src="assets/images/portfolio-12.webp" alt="Super NFC SIM" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">GSM / 5G SIM</span>
                 </div>
                 <div class="product-info">
@@ -217,7 +220,7 @@
             <!-- Item 9 (SIM) -->
             <div class="product-item-card" data-category="sim">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-11.png" alt="Normal 5G GSM SIM" class="product-img">
+                    <img src="assets/images/portfolio-11.webp" alt="Normal 5G GSM SIM" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">GSM / 5G SIM</span>
                 </div>
                 <div class="product-info">
@@ -232,7 +235,7 @@
             <!-- Item 10 (Sticker) -->
             <div class="product-item-card" data-category="sticker">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-21.png" alt="NFC Payment Sticker" class="product-img">
+                    <img src="assets/images/portfolio-21.webp" alt="NFC Payment Sticker" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Sticker</span>
                 </div>
                 <div class="product-info">
@@ -247,7 +250,7 @@
             <!-- Item 11 (Sticker) -->
             <div class="product-item-card" data-category="sticker">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-22.png" alt="Metallic Sticker" class="product-img">
+                    <img src="assets/images/portfolio-22.webp" alt="Metallic Sticker" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Sticker</span>
                 </div>
                 <div class="product-info">
@@ -262,7 +265,7 @@
             <!-- Item 12 (Sticker) -->
             <div class="product-item-card" data-category="sticker">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-23.png" alt="Encrypted Sticker" class="product-img">
+                    <img src="assets/images/portfolio-23.webp" alt="Encrypted Sticker" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Sticker</span>
                 </div>
                 <div class="product-info">
@@ -277,7 +280,7 @@
             <!-- Item 13 (Ring) -->
             <div class="product-item-card" data-category="ring">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-6.png" alt="Smart Health Ceramic Ring Black" class="product-img">
+                    <img src="assets/images/portfolio-6.webp" alt="Smart Health Ceramic Ring Black" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Smart Ring</span>
                 </div>
                 <div class="product-info">
@@ -292,7 +295,7 @@
             <!-- Item 14 (Ring) -->
             <div class="product-item-card" data-category="ring">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-7.png" alt="Smart Health Ceramic Ring White" class="product-img">
+                    <img src="assets/images/portfolio-7.webp" alt="Smart Health Ceramic Ring White" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Smart Ring</span>
                 </div>
                 <div class="product-info">
@@ -307,7 +310,7 @@
             <!-- Item 15 (Ring) -->
             <div class="product-item-card" data-category="ring">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-8.png" alt="Ceramic Ring Silver Accent" class="product-img">
+                    <img src="assets/images/portfolio-8.webp" alt="Ceramic Ring Silver Accent" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Smart Ring</span>
                 </div>
                 <div class="product-info">
@@ -322,7 +325,7 @@
             <!-- Item 16 (Ring) -->
             <div class="product-item-card" data-category="ring">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-9.png" alt="Smart Ceramic Ring Gold" class="product-img">
+                    <img src="assets/images/portfolio-9.webp" alt="Smart Ceramic Ring Gold" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Smart Ring</span>
                 </div>
                 <div class="product-info">
@@ -337,7 +340,7 @@
             <!-- Item 17 (Wristband) -->
             <div class="product-item-card" data-category="wristband">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-13.png" alt="Smart Ceramic Wristband" class="product-img">
+                    <img src="assets/images/portfolio-13.webp" alt="Smart Ceramic Wristband" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Smart Wristband</span>
                 </div>
                 <div class="product-info">
@@ -352,7 +355,7 @@
             <!-- Item 18 (Wristband) -->
             <div class="product-item-card" data-category="wristband">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-14.png" alt="Executive Ceramic Wristband" class="product-img">
+                    <img src="assets/images/portfolio-14.webp" alt="Executive Ceramic Wristband" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">Smart Wristband</span>
                 </div>
                 <div class="product-info">
@@ -367,7 +370,7 @@
             <!-- Item 19 (PVC) -->
             <div class="product-item-card" data-category="pvc">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-15.png" alt="Metal Sticker PVC Card" class="product-img">
+                    <img src="assets/images/portfolio-15.webp" alt="Metal Sticker PVC Card" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">PVC Card</span>
                 </div>
                 <div class="product-info">
@@ -382,7 +385,7 @@
             <!-- Item 20 (PVC) -->
             <div class="product-item-card" data-category="pvc">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-17.png" alt="3D Coating PVC Cards" class="product-img">
+                    <img src="assets/images/portfolio-17.webp" alt="3D Coating PVC Cards" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">PVC Card</span>
                 </div>
                 <div class="product-info">
@@ -397,7 +400,7 @@
             <!-- Item 21 (PVC) -->
             <div class="product-item-card" data-category="pvc">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-18.png" alt="3D Coating PVC Cards Reflective" class="product-img">
+                    <img src="assets/images/portfolio-18.webp" alt="3D Coating PVC Cards Reflective" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">PVC Card</span>
                 </div>
                 <div class="product-info">
@@ -412,7 +415,7 @@
             <!-- Item 22 (PVC) -->
             <div class="product-item-card" data-category="pvc">
                 <div class="product-img-box">
-                    <img src="assets/images/portfolio-16.png" alt="Smart Card PVC" class="product-img">
+                    <img src="assets/images/portfolio-16.webp" alt="Smart Card PVC" class="product-img" loading="lazy" decoding="async" width="500" height="400">
                     <span class="product-badge">PVC Card</span>
                 </div>
                 <div class="product-info">
@@ -442,7 +445,7 @@
                 <p style="font-size: 0.9rem; color: #B8ADA5; max-width: 320px; line-height: 1.6;">
                     Innovative technology house founded in Dubai (Q1 2025). Specializing in payment systems, precious metal cards, 5G SIMs, and wearable payment technologies.
                 </p>
-                <div style="font-size: 0.85rem; color: #8C8077; margin-top: 1rem;">
+                <div style="font-size: 0.85rem; color: #A89C94; margin-top: 1rem;">
                     Ras Al Khaimah Economic Zone, Dubai, UAE • <a href="mailto:info@gentech.ae" style="color: #EB651A;">info@gentech.ae</a>
                 </div>
             </div>
@@ -512,6 +515,6 @@
 </footer>
 
 <!-- Scripts -->
-<script src="assets/js/app.js?v=12.0"></script>
+<script defer src="assets/js/app.js?v=15.0"></script>
 </body>
 </html>
