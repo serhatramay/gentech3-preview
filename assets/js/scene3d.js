@@ -1,5 +1,5 @@
 /**
- * GenTech 3 - Ultra-Realistic 3D Atelier
+ * GenTech 3 - Ultra-Realistic 3D Atelier (Optimized Edition)
  * Dynamic Live 3D Configurator for:
  * 1. Samsung Galaxy Ring (Concave Titanium Smart Ring - Silver, Black, Gold)
  * 2. Sovereign Titanium Card (Stealth Black, Pale Titanium, 24K Gold, Hermes Ceramic)
@@ -17,13 +17,29 @@ let ringTitaniumMat, ringInnerResinMat, ringPpgLedMat, ringPpgLight;
 let currentRingFinish = 'silver';
 let cardSideMat, cardFrontMat, cardFrameMat;
 let currentCardFinish = 'stealth';
+let cardTexturesCache = {};
 
-// Generate High-Res 2048x1280 Titanium Card Texture with Dynamic Metal Alloy Finishes
+let is3DInitialized = false;
+let isSceneVisible = true;
+let animFrameId = null;
+let lastFrameTime = 0;
+const targetFPS = 36; // 36 FPS is smooth and uses 50% less mobile CPU
+const frameInterval = 1000 / targetFPS;
+
+// Generate Optimized Titanium Card Texture on-demand with Dynamic Metal Alloy Finishes
 function createCardTexture(finish = 'stealth') {
+  if (cardTexturesCache[finish]) return cardTexturesCache[finish];
+
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const w = isMobile ? 1024 : 1400;
+  const h = Math.round(w * (1290 / 2048));
+  const scale = w / 2048;
+
   const canvas = document.createElement('canvas');
-  canvas.width = 2048;
-  canvas.height = 1290;
+  canvas.width = w;
+  canvas.height = h;
   const ctx = canvas.getContext('2d');
+  ctx.scale(scale, scale);
 
   let textColor = '#ffffff';
   let subColor = '#94a3b8';
@@ -32,7 +48,6 @@ function createCardTexture(finish = 'stealth') {
   let nfcColor = 'rgba(255, 255, 255, 0.45)';
 
   if (finish === 'stealth') {
-    // 1. Stealth Dark Brushed Titanium
     const grad = ctx.createLinearGradient(0, 0, 2048, 1290);
     grad.addColorStop(0.0, '#22262f');
     grad.addColorStop(0.25, '#3b4352');
@@ -43,11 +58,10 @@ function createCardTexture(finish = 'stealth') {
     ctx.fillRect(0, 0, 2048, 1290);
 
     ctx.fillStyle = 'rgba(255, 255, 255, 0.035)';
-    for (let i = 0; i < 1290; i += 3) {
-      if (Math.random() > 0.4) ctx.fillRect(0, i, 2048, 1.5);
+    for (let i = 0; i < 1290; i += 6) {
+      ctx.fillRect(0, i, 2048, 2);
     }
   } else if (finish === 'titanium') {
-    // 2. Pale Silver Natural Titanium
     const grad = ctx.createLinearGradient(0, 0, 2048, 1290);
     grad.addColorStop(0.0, '#c8d3e0');
     grad.addColorStop(0.3, '#f1f5f9');
@@ -57,8 +71,8 @@ function createCardTexture(finish = 'stealth') {
     ctx.fillRect(0, 0, 2048, 1290);
 
     ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-    for (let i = 0; i < 1290; i += 3) {
-      if (Math.random() > 0.4) ctx.fillRect(0, i, 2048, 1.5);
+    for (let i = 0; i < 1290; i += 6) {
+      ctx.fillRect(0, i, 2048, 2);
     }
 
     textColor = '#0f172a';
@@ -67,7 +81,6 @@ function createCardTexture(finish = 'stealth') {
     borderStroke = 'rgba(15, 23, 42, 0.2)';
     nfcColor = 'rgba(15, 23, 42, 0.45)';
   } else if (finish === 'gold') {
-    // 3. 24K Mirror Champagne Gold
     const grad = ctx.createLinearGradient(0, 0, 2048, 1290);
     grad.addColorStop(0.0, '#ca8a04');
     grad.addColorStop(0.25, '#fef08a');
@@ -78,8 +91,8 @@ function createCardTexture(finish = 'stealth') {
     ctx.fillRect(0, 0, 2048, 1290);
 
     ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
-    for (let i = 0; i < 1290; i += 3) {
-      if (Math.random() > 0.4) ctx.fillRect(0, i, 2048, 1.5);
+    for (let i = 0; i < 1290; i += 6) {
+      ctx.fillRect(0, i, 2048, 2);
     }
 
     textColor = '#422006';
@@ -88,7 +101,6 @@ function createCardTexture(finish = 'stealth') {
     borderStroke = 'rgba(66, 32, 6, 0.25)';
     nfcColor = 'rgba(66, 32, 6, 0.45)';
   } else if (finish === 'ceramic') {
-    // 4. Hermes Alabaster Ceramic
     const grad = ctx.createLinearGradient(0, 0, 2048, 1290);
     grad.addColorStop(0.0, '#ffffff');
     grad.addColorStop(0.3, '#faf2eb');
@@ -117,7 +129,11 @@ function createCardTexture(finish = 'stealth') {
   chipGrad.addColorStop(1.0, '#ffd868');
   ctx.fillStyle = chipGrad;
   ctx.beginPath();
-  ctx.roundRect(chipX, chipY, chipW, chipH, 24);
+  if (ctx.roundRect) {
+    ctx.roundRect(chipX, chipY, chipW, chipH, 24);
+  } else {
+    ctx.rect(chipX, chipY, chipW, chipH);
+  }
   ctx.fill();
   ctx.strokeStyle = '#85640e';
   ctx.lineWidth = 6;
@@ -146,29 +162,24 @@ function createCardTexture(finish = 'stealth') {
   // Laser Engraved Brand Typography (GENTECH)
   ctx.fillStyle = textColor;
   ctx.font = 'bold 84px "Plus Jakarta Sans", sans-serif';
-  ctx.letterSpacing = '8px';
   ctx.fillText('GENTECH', 1420, 240);
 
   ctx.fillStyle = accentColor;
   ctx.font = '600 36px "JetBrains Mono", monospace';
-  ctx.letterSpacing = '4px';
   ctx.fillText('SOVEREIGN TITANIUM', 1340, 295);
 
   // Cardholder Details
   ctx.fillStyle = subColor;
   ctx.font = '600 32px "Plus Jakarta Sans", sans-serif';
-  ctx.letterSpacing = '4px';
   ctx.fillText('CARDHOLDER / PRIVATE CLIENT', 220, 960);
 
   ctx.fillStyle = textColor;
   ctx.font = 'bold 64px "Plus Jakarta Sans", sans-serif';
-  ctx.letterSpacing = '8px';
   ctx.fillText('ALEXANDER VANCE', 220, 1040);
 
   // Serial & CC EAL6+ Info
   ctx.fillStyle = subColor;
   ctx.font = '500 38px "JetBrains Mono", monospace';
-  ctx.letterSpacing = '6px';
   ctx.fillText('GT-9482-2026 • CC EAL6+ SECURE ELEMENT', 220, 1140);
 
   // Holographic Crest Icon
@@ -181,6 +192,7 @@ function createCardTexture(finish = 'stealth') {
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.needsUpdate = true;
+  cardTexturesCache[finish] = texture;
   return texture;
 }
 
@@ -217,18 +229,18 @@ function setCardTitaniumFinish(finish) {
 }
 
 /**
- * Build 100% Authentic Samsung Galaxy Ring 3D Architecture
+ * Build Lightweight authentic Galaxy Ring
  */
 function buildGalaxyRing() {
   const ringRoot = new THREE.Group();
 
-  const rEdge = 1.62;   // Outer flared rim radius
-  const rCenter = 1.50; // Inward concave dip radius (Galaxy Ring signature)
-  const rInner = 1.34;  // Inner finger band radius
-  const height = 1.12;  // Band height/width
+  const rEdge = 1.62;
+  const rCenter = 1.50;
+  const rInner = 1.34;
+  const height = 1.12;
 
-  // 1. OUTER CONCAVE TITANIUM CYLINDER
-  const outerGeo = new THREE.CylinderGeometry(rEdge, rEdge, height, 96, 32, true);
+  // 1. OUTER CONCAVE TITANIUM CYLINDER (48 segments for high performance)
+  const outerGeo = new THREE.CylinderGeometry(rEdge, rEdge, height, 48, 16, true);
   const pos = outerGeo.attributes.position;
   
   for (let i = 0; i < pos.count; i++) {
@@ -245,19 +257,17 @@ function buildGalaxyRing() {
   }
   outerGeo.computeVertexNormals();
 
-  // Grade 5 Titanium Shell Material
   ringTitaniumMat = new THREE.MeshStandardMaterial({
-    color: 0xd8dde6, // Titanium Silver default
+    color: 0xd8dde6,
     metalness: 0.95,
-    roughness: 0.22,
-    envMapIntensity: 1.6
+    roughness: 0.22
   });
 
   const outerShellMesh = new THREE.Mesh(outerGeo, ringTitaniumMat);
   ringRoot.add(outerShellMesh);
 
-  // 2. INNER TRANSLUCENT BIO-RESIN LINER
-  const innerGeo = new THREE.CylinderGeometry(rInner, rInner, height - 0.02, 96, 1, true);
+  // 2. INNER BIO-RESIN LINER
+  const innerGeo = new THREE.CylinderGeometry(rInner, rInner, height - 0.02, 48, 1, true);
   ringInnerResinMat = new THREE.MeshStandardMaterial({
     color: 0x14171d,
     metalness: 0.35,
@@ -267,39 +277,33 @@ function buildGalaxyRing() {
   const innerLinerMesh = new THREE.Mesh(innerGeo, ringInnerResinMat);
   ringRoot.add(innerLinerMesh);
 
-  // 3. TOP & BOTTOM BEVELED RIM RINGS
-  const topRimGeo = new THREE.RingGeometry(rInner, rEdge, 96);
+  // 3. TOP & BOTTOM RIMS
+  const topRimGeo = new THREE.RingGeometry(rInner, rEdge, 48);
   const topRimMesh = new THREE.Mesh(topRimGeo, ringTitaniumMat);
   topRimMesh.position.y = height / 2;
   topRimMesh.rotation.x = -Math.PI / 2;
   ringRoot.add(topRimMesh);
 
-  const bottomRimGeo = new THREE.RingGeometry(rInner, rEdge, 96);
+  const bottomRimGeo = new THREE.RingGeometry(rInner, rEdge, 48);
   const bottomRimMesh = new THREE.Mesh(bottomRimGeo, ringTitaniumMat);
   bottomRimMesh.position.y = -height / 2;
   bottomRimMesh.rotation.x = Math.PI / 2;
   ringRoot.add(bottomRimMesh);
 
-  // 4. SAMSUNG BIOACTIVE SENSOR HUB: 3 Raised Inner Sensor Modules
+  // 4. SENSOR HUB
   const sensorHub = new THREE.Group();
 
-  // A. Center Sensor Module: BioActive Optical PPG Hub (Angle = 0°)
   const ppgPodGeo = new THREE.BoxGeometry(0.20, 0.42, 0.07);
-  const podMat = new THREE.MeshStandardMaterial({
-    color: 0x0c0e12,
-    metalness: 0.2,
-    roughness: 0.1
-  });
+  const podMat = new THREE.MeshStandardMaterial({ color: 0x0c0e12, metalness: 0.2, roughness: 0.1 });
   const ppgPod = new THREE.Mesh(ppgPodGeo, podMat);
   ppgPod.position.set(0, 0, rInner - 0.025);
   sensorHub.add(ppgPod);
 
-  // Green Optical PPG Emitter Diode (Pulsing Bioluminescent LED)
-  const ppgLedGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.025, 16);
+  const ppgLedGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.025, 12);
   ringPpgLedMat = new THREE.MeshStandardMaterial({
     color: 0x00ff88,
     emissive: 0x00ff66,
-    emissiveIntensity: 1.8,
+    emissiveIntensity: 1.5,
     metalness: 0.1,
     roughness: 0.1
   });
@@ -308,81 +312,18 @@ function buildGalaxyRing() {
   ppgLed.position.set(0, 0.09, rInner - 0.055);
   sensorHub.add(ppgLed);
 
-  // Infrared / Red Optical Sensor Lens
-  const irLensGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.025, 16);
-  const irLensMat = new THREE.MeshStandardMaterial({
-    color: 0x330000,
-    emissive: 0x880000,
-    emissiveIntensity: 0.6,
-    metalness: 0.2,
-    roughness: 0.1
-  });
-  const irLens = new THREE.Mesh(irLensGeo, irLensMat);
-  irLens.rotation.x = Math.PI / 2;
-  irLens.position.set(0, -0.09, rInner - 0.055);
-  sensorHub.add(irLens);
-
-  // Point Light for Heartbeat Glow
-  ringPpgLight = new THREE.PointLight(0x00ff88, 1.2, 1.6);
+  ringPpgLight = new THREE.PointLight(0x00ff88, 1.0, 1.5);
   ringPpgLight.position.set(0, 0.09, rInner - 0.08);
   sensorHub.add(ringPpgLight);
 
-  // B. Sensor 2: Skin Temperature Sensor Disc (Angle = +42°)
-  const angle2 = Math.PI * 0.23;
-  const tempSensorGeo = new THREE.CylinderGeometry(0.075, 0.075, 0.05, 24);
-  const tempSensorMat = new THREE.MeshStandardMaterial({
-    color: 0xd0d8e2,
-    metalness: 0.95,
-    roughness: 0.12
-  });
-  const tempSensor = new THREE.Mesh(tempSensorGeo, tempSensorMat);
-  tempSensor.rotation.x = Math.PI / 2;
-  tempSensor.position.set(Math.sin(angle2) * (rInner - 0.02), 0, Math.cos(angle2) * (rInner - 0.02));
-  tempSensor.rotation.y = angle2;
-  sensorHub.add(tempSensor);
-
-  // C. Sensor 3: 3D Motion / Sleep Tracking Hub (Angle = -42°)
-  const angle3 = -Math.PI * 0.23;
-  const motionPodGeo = new THREE.BoxGeometry(0.16, 0.32, 0.06);
-  const motionPod = new THREE.Mesh(motionPodGeo, podMat);
-  motionPod.position.set(Math.sin(angle3) * (rInner - 0.02), 0, Math.cos(angle3) * (rInner - 0.02));
-  motionPod.rotation.y = angle3;
-  sensorHub.add(motionPod);
-
-  // D. Dual 24K Gold Magnetic Pogo Charging Pins (Angle = +80°)
-  const pinAngle = Math.PI * 0.44;
-  const pinGeo = new THREE.CylinderGeometry(0.024, 0.024, 0.04, 16);
-  const pinMat = new THREE.MeshStandardMaterial({
-    color: 0xffd700,
-    metalness: 0.98,
-    roughness: 0.1
-  });
-
-  const pin1 = new THREE.Mesh(pinGeo, pinMat);
-  pin1.rotation.x = Math.PI / 2;
-  pin1.position.set(Math.sin(pinAngle) * (rInner - 0.015), 0.11, Math.cos(pinAngle) * (rInner - 0.015));
-  pin1.rotation.y = pinAngle;
-  sensorHub.add(pin1);
-
-  const pin2 = new THREE.Mesh(pinGeo, pinMat);
-  pin2.rotation.x = Math.PI / 2;
-  pin2.position.set(Math.sin(pinAngle) * (rInner - 0.015), -0.11, Math.cos(pinAngle) * (rInner - 0.015));
-  pin2.rotation.y = pinAngle;
-  sensorHub.add(pin2);
-
-  // 5. Orientation Alignment Notch (Bottom Outer Lip)
+  // Notch
   const notchGeo = new THREE.BoxGeometry(0.035, 0.12, 0.05);
-  const notchMat = new THREE.MeshStandardMaterial({
-    color: 0x64748b,
-    metalness: 0.8,
-    roughness: 0.3
-  });
+  const notchMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.8, roughness: 0.3 });
   const notch = new THREE.Mesh(notchGeo, notchMat);
   notch.position.set(0, -height / 2 + 0.01, rEdge - 0.01);
   ringRoot.add(notch);
 
   ringRoot.add(sensorHub);
-
   ringRoot.rotation.x = Math.PI * 0.28;
   ringRoot.rotation.z = Math.PI * 0.06;
 
@@ -411,45 +352,39 @@ function setRingTitaniumFinish(finish) {
 
 function init3DScene() {
   const container = document.getElementById('canvas3D');
-  if (!container) return;
+  if (!container || !window.THREE) return;
 
-  const width = container.clientWidth;
-  const height = container.clientHeight;
+  const width = container.clientWidth || 600;
+  const height = container.clientHeight || 500;
 
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
 
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
   renderer.setSize(width, height);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.35;
+  container.innerHTML = '';
   container.appendChild(renderer.domElement);
 
-  // 1. Ambient & Warm Light
+  // Lights
   hemiLight = new THREE.HemisphereLight(0xffffff, 0xfceee3, 1.35);
   scene.add(hemiLight);
 
-  // 2. Key Light
-  keyLight = new THREE.DirectionalLight(0xffffff, 2.9);
+  keyLight = new THREE.DirectionalLight(0xffffff, 2.5);
   keyLight.position.set(8, 10, 12);
   scene.add(keyLight);
 
-  // 3. Fill Light
-  fillLight = new THREE.DirectionalLight(0xffedd5, 1.6);
+  fillLight = new THREE.DirectionalLight(0xffedd5, 1.4);
   fillLight.position.set(-10, -4, 8);
   scene.add(fillLight);
 
-  // 4. Gold & Hermes Rim Glints
-  rimLightGold = new THREE.DirectionalLight(0xd4af37, 2.2);
+  rimLightGold = new THREE.DirectionalLight(0xd4af37, 2.0);
   rimLightGold.position.set(0, 8, -10);
   scene.add(rimLightGold);
 
-  rimLightHermes = new THREE.DirectionalLight(0xeb651a, 1.4);
-  rimLightHermes.position.set(-8, 6, -8);
-  scene.add(rimLightHermes);
-
-  // 5. Stage Groups
+  // Groups
   mainStageGroup = new THREE.Group();
   scene.add(mainStageGroup);
 
@@ -458,13 +393,11 @@ function init3DScene() {
   mainStageGroup.add(cardGroup);
   mainStageGroup.add(ringGroup);
 
-  // --- TITANIUM CARD MESH ---
-  const cardTexture = createCardTexture('stealth');
+  // Card Mesh (Lazy texture loaded when switched)
   const cardGeo = new THREE.BoxGeometry(4.8, 3.03, 0.08);
-  
   cardSideMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.95, roughness: 0.2 });
   cardFrontMat = new THREE.MeshStandardMaterial({
-    map: cardTexture,
+    color: 0x22262f,
     metalness: 0.88,
     roughness: 0.22,
     clearcoat: 0.6,
@@ -480,23 +413,21 @@ function init3DScene() {
   const frameMesh = new THREE.Mesh(frameGeo, cardFrameMat);
   cardGroup.add(frameMesh);
 
-  // --- SAMSUNG GALAXY RING MESH GROUP ---
+  // Ring Mesh
   ringMeshGroup = buildGalaxyRing();
   ringGroup.add(ringMeshGroup);
 
-  // Set default active view to Galaxy Smart Ring
   setActiveArtifact('ring');
 
-  // Mouse / Pointer Listener
+  // Listeners
   window.addEventListener('mousemove', (e) => {
     const rect = container.getBoundingClientRect();
     const x = e.clientX - (rect.left + rect.width / 2);
     const y = e.clientY - (rect.top + rect.height / 2);
     targetRotationY = (x / rect.width) * 0.65;
     targetRotationX = (y / rect.height) * 0.55;
-  });
+  }, { passive: true });
 
-  // Touch Listener (Mobile)
   let touchStartX = 0, touchStartY = 0;
   container.addEventListener('touchstart', (e) => {
     if (e.touches.length === 1) {
@@ -514,17 +445,18 @@ function init3DScene() {
     }
   }, { passive: true });
 
-  // Resize Listener
   window.addEventListener('resize', () => {
     const newW = container.clientWidth;
     const newH = container.clientHeight;
-    camera.aspect = newW / newH;
-    camera.updateProjectionMatrix();
-    renderer.setSize(newW, newH);
-    setActiveArtifact(currentArtifact);
-  });
+    if (camera && renderer && newW && newH) {
+      camera.aspect = newW / newH;
+      camera.updateProjectionMatrix();
+      renderer.setSize(newW, newH);
+      setActiveArtifact(currentArtifact);
+    }
+  }, { passive: true });
 
-  animate();
+  start3DAnimation();
 }
 
 function setActiveArtifact(artifact) {
@@ -535,44 +467,74 @@ function setActiveArtifact(artifact) {
   const cardFinishBar = document.getElementById('cardFinishSelector');
 
   if (artifact === 'card') {
-    camera.position.set(0, 0, isMobile ? 12 : 10.5);
-    cardGroup.position.set(0, 0, 0);
-    cardGroup.scale.set(isMobile ? 1.0 : 1.22, isMobile ? 1.0 : 1.22, isMobile ? 1.0 : 1.22);
+    if (cardFrontMat && !cardFrontMat.map) {
+      cardFrontMat.map = createCardTexture(currentCardFinish || 'stealth');
+      cardFrontMat.needsUpdate = true;
+    }
 
-    ringGroup.position.set(0, 15, 0);
-    ringGroup.scale.set(0.001, 0.001, 0.001);
+    if (camera) camera.position.set(0, 0, isMobile ? 12 : 10.5);
+    if (cardGroup) {
+      cardGroup.position.set(0, 0, 0);
+      cardGroup.scale.set(isMobile ? 1.0 : 1.22, isMobile ? 1.0 : 1.22, isMobile ? 1.0 : 1.22);
+    }
+    if (ringGroup) {
+      ringGroup.position.set(0, 15, 0);
+      ringGroup.scale.set(0.001, 0.001, 0.001);
+    }
 
     if (ringFinishBar) ringFinishBar.style.display = 'none';
     if (cardFinishBar) cardFinishBar.style.display = 'flex';
   } else if (artifact === 'ring') {
-    camera.position.set(0, 0, isMobile ? 11 : 9.5);
-    ringGroup.position.set(0, 0, 0);
-    ringGroup.scale.set(isMobile ? 1.25 : 1.45, isMobile ? 1.25 : 1.45, isMobile ? 1.25 : 1.45);
-
-    cardGroup.position.set(0, -15, 0);
-    cardGroup.scale.set(0.001, 0.001, 0.001);
+    if (camera) camera.position.set(0, 0, isMobile ? 11 : 9.5);
+    if (ringGroup) {
+      ringGroup.position.set(0, 0, 0);
+      ringGroup.scale.set(isMobile ? 1.25 : 1.45, isMobile ? 1.25 : 1.45, isMobile ? 1.25 : 1.45);
+    }
+    if (cardGroup) {
+      cardGroup.position.set(0, -15, 0);
+      cardGroup.scale.set(0.001, 0.001, 0.001);
+    }
 
     if (ringFinishBar) ringFinishBar.style.display = 'flex';
     if (cardFinishBar) cardFinishBar.style.display = 'none';
   }
 }
 
-function animate() {
-  requestAnimationFrame(animate);
-  const time = Date.now() * 0.001;
-  
+function start3DAnimation() {
+  if (!animFrameId) {
+    animFrameId = requestAnimationFrame(animate);
+  }
+}
+
+function stop3DAnimation() {
+  if (animFrameId) {
+    cancelAnimationFrame(animFrameId);
+    animFrameId = null;
+  }
+}
+
+function animate(now) {
+  animFrameId = requestAnimationFrame(animate);
+
+  if (!isSceneVisible || !renderer || !scene || !camera) return;
+
+  // Frame limiter for mobile efficiency
+  if (now && now - lastFrameTime < frameInterval) return;
+  lastFrameTime = now || 0;
+
+  const time = (now || Date.now()) * 0.001;
+
   if (cardGroup && currentArtifact === 'card') {
     cardGroup.rotation.y += (targetRotationY - cardGroup.rotation.y) * 0.06;
     cardGroup.rotation.x += (targetRotationX - cardGroup.rotation.x) * 0.06;
     cardGroup.position.y = Math.sin(time * 0.7) * 0.07;
   }
-  
+
   if (ringGroup && currentArtifact === 'ring') {
     ringGroup.rotation.y += 0.009;
     ringGroup.rotation.x += (targetRotationX * 0.5 - ringGroup.rotation.x) * 0.04;
     ringGroup.position.y = Math.cos(time * 0.7) * 0.06;
 
-    // Rhythmic optical PPG sensor heartbeat pulse
     const heartPulse = (Math.sin(time * 4.8) + 1) * 0.5;
     if (ringPpgLedMat) {
       ringPpgLedMat.emissiveIntensity = 1.0 + heartPulse * 1.6;
@@ -581,20 +543,71 @@ function animate() {
       ringPpgLight.intensity = 0.6 + heartPulse * 1.0;
     }
   }
-  
+
   renderer.render(scene, camera);
 }
 
-function tryInit3D() {
-  if (typeof THREE !== 'undefined' && document.getElementById('canvas3D')) {
-    init3DScene();
-  } else if (document.getElementById('canvas3D')) {
-    setTimeout(tryInit3D, 50);
+// Scheduled Non-Blocking 3D Engine Setup
+function schedule3DInit() {
+  const container = document.getElementById('canvas3D');
+  if (!container || is3DInitialized) return;
+
+  const runInit = () => {
+    if (is3DInitialized) return;
+    is3DInitialized = true;
+    if (typeof THREE !== 'undefined') {
+      init3DScene();
+    } else {
+      let retries = 0;
+      const checkThree = setInterval(() => {
+        if (typeof THREE !== 'undefined') {
+          clearInterval(checkThree);
+          init3DScene();
+        } else if (++retries > 25) {
+          clearInterval(checkThree);
+        }
+      }, 100);
+    }
+  };
+
+  // IntersectionObserver to pause rendering when offscreen
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isSceneVisible = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          start3DAnimation();
+        } else {
+          stop3DAnimation();
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(container);
   }
+
+  // Defer 3D load until browser has finished first paint & idle
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      setTimeout(runInit, 300);
+    }, { timeout: 1500 });
+  } else {
+    setTimeout(runInit, 500);
+  }
+
+  // Also initialize immediately on user interaction
+  const triggerInstantly = () => {
+    window.removeEventListener('scroll', triggerInstantly);
+    window.removeEventListener('touchstart', triggerInstantly);
+    window.removeEventListener('click', triggerInstantly);
+    runInit();
+  };
+  window.addEventListener('scroll', triggerInstantly, { passive: true, once: true });
+  window.addEventListener('touchstart', triggerInstantly, { passive: true, once: true });
+  window.addEventListener('click', triggerInstantly, { passive: true, once: true });
 }
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', tryInit3D);
+  document.addEventListener('DOMContentLoaded', schedule3DInit);
 } else {
-  tryInit3D();
+  schedule3DInit();
 }
