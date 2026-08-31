@@ -2078,7 +2078,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .entity-card {
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
   padding: 1.2rem;
