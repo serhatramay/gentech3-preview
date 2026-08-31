@@ -4,6 +4,26 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // Mobile Hamburger Menu Toggle
+  const mobileToggle = document.getElementById('mobileMenuToggle');
+  const mobileDrawer = document.getElementById('mobileNavDrawer');
+  const mobileClose = document.getElementById('mobileNavClose');
+
+  if (mobileToggle && mobileDrawer) {
+    mobileToggle.addEventListener('click', () => {
+      mobileDrawer.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  if (mobileClose && mobileDrawer) {
+    mobileClose.addEventListener('click', () => {
+      mobileDrawer.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+
   // 1. 3D Artifact Toggle (Ring & Card)
   const artifactBtns = document.querySelectorAll('.artifact-toggle-btn');
   const ringFinishSelector = document.getElementById('ringFinishSelector');

@@ -39,7 +39,7 @@ def get_header(title, desc, active_nav=""):
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css?v=20.0">
+    <link rel="stylesheet" href="assets/css/style.css?v=21.0">
 
     <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
@@ -115,6 +115,7 @@ def get_header(title, desc, active_nav=""):
                 </div>
             </a>
 
+            <!-- Desktop Links -->
             <div class="nav-links">
                 <a href="index.html" class="nav-link {nav_home}">Home</a>
                 <a href="about.html" class="nav-link {nav_about}">About</a>
@@ -177,14 +178,70 @@ def get_header(title, desc, active_nav=""):
                 <a href="contact.html" class="nav-link {nav_contact}">Contact</a>
             </div>
 
-            <div class="nav-actions">
+            <div class="nav-actions" style="display: flex; align-items: center; gap: 0.8rem;">
                 <a href="contact.html" class="btn-primary nav-cta">
                     <span>Inquire Group</span>
                 </a>
+                <!-- Mobile Menu Button -->
+                <button class="mobile-toggle-btn" id="mobileMenuToggle" aria-label="Open Navigation Menu">
+                    ☰
+                </button>
             </div>
         </nav>
     </div>
 </header>
+
+<!-- Mobile Navigation Drawer -->
+<div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-drawer-header">
+        <div class="nav-brand">
+            <div class="nav-brand-dot"></div>
+            <div class="brand-text">
+                <span class="brand-title">GENTECH GROUP</span>
+                <span class="brand-sub">CANADA • UAE • SOUTH AFRICA</span>
+            </div>
+        </div>
+        <button class="mobile-drawer-close" id="mobileNavClose" aria-label="Close Menu">✕</button>
+    </div>
+
+    <div class="mobile-drawer-links">
+        <a href="index.html" class="mobile-drawer-link">Home</a>
+        <a href="about.html" class="mobile-drawer-link">About Gentech Group</a>
+        <a href="chairman.html" class="mobile-drawer-link">Chairman's Statement</a>
+        
+        <div class="mobile-drawer-link" style="flex-direction: column; align-items: flex-start;">
+            <span>Group Companies</span>
+            <div class="mobile-sublinks">
+                <a href="group-canada.html" class="mobile-sublink">🍁 Gentech Canada (Toronto)</a>
+                <a href="group-uae.html" class="mobile-sublink">🇦🇪 Gentech UAE (RAKEZ)</a>
+                <a href="group-africa.html" class="mobile-sublink">🇿🇦 Gentech Africa (Johannesburg)</a>
+            </div>
+        </div>
+
+        <div class="mobile-drawer-link" style="flex-direction: column; align-items: flex-start;">
+            <span>The 6 Solutions</span>
+            <div class="mobile-sublinks">
+                <a href="solutions-cards.html" class="mobile-sublink">Cards &amp; Card Manufacturing</a>
+                <a href="solutions-payments.html" class="mobile-sublink">Payment Technologies</a>
+                <a href="solutions-mobility.html" class="mobile-sublink">Smart Mobility Systems</a>
+                <a href="solutions-telecom.html" class="mobile-sublink">Telecommunications (5G)</a>
+                <a href="solutions-infrastructure.html" class="mobile-sublink">Digital Infrastructure</a>
+                <a href="solutions-capital.html" class="mobile-sublink">Capital &amp; Strategic Projects</a>
+            </div>
+        </div>
+
+        <a href="africa-national-mobility-program.html" class="mobile-drawer-link">🇿🇦 South Africa Program</a>
+        <a href="projects.html" class="mobile-drawer-link">Projects &amp; Case Studies</a>
+        <a href="news.html" class="mobile-drawer-link">News &amp; Media</a>
+        <a href="contact.html" class="mobile-drawer-link">Contact Corporate Hubs</a>
+    </div>
+
+    <div style="margin-top: auto; padding-top: 2rem;">
+        <a href="contact.html" class="btn-primary" style="width: 100%; text-align: center; display: block;">
+            <span>Submit Institutional Inquiry</span>
+        </a>
+    </div>
+</div>
 """
 
 def get_page_banner(title, sub, crumb, badge="✦ GENTECH GROUP • GLOBAL INFRASTRUCTURE"):
@@ -310,7 +367,7 @@ def get_footer():
 </footer>
 
 <!-- Core Scripts -->
-<script src="assets/js/app.js?v=20.0"></script>
+<script src="assets/js/app.js?v=21.0"></script>
 </body>
 </html>
 """
@@ -321,4 +378,3 @@ def write_file(filename, content):
         f.write(content)
     print(f"Generated: {filename}")
 
-print("Base layout templates defined.")
