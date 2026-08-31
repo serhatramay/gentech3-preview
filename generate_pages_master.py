@@ -77,7 +77,7 @@ def build_index():
                     <button class="finish-pill-btn card-finish-btn active" data-card-finish="stealth" aria-label="Stealth Black finish">Stealth Black</button>
                     <button class="finish-pill-btn card-finish-btn" data-card-finish="titanium" aria-label="Pale Titanium finish">Pale Titanium</button>
                     <button class="finish-pill-btn card-finish-btn" data-card-finish="gold" aria-label="24K Mirror Gold finish">24K Mirror Gold</button>
-                    <button class="finish-pill-btn card-finish-btn" data-card-finish="ceramic" aria-label="Hermes Ceramic finish">Ceramic</button>
+                    
                 </div>
             </div>
         </div>

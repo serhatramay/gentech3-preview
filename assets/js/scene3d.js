@@ -202,6 +202,7 @@ function setCardTitaniumFinish(finish) {
   if (!cardFrontMat || !cardSideMat) return;
 
   const newTex = createCardTexture(finish);
+  cardFrontMat.color.setHex(0xffffff);
   cardFrontMat.map = newTex;
   cardFrontMat.needsUpdate = true;
 
@@ -397,12 +398,13 @@ function init3DScene() {
   const cardGeo = new THREE.BoxGeometry(4.8, 3.03, 0.08);
   cardSideMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.95, roughness: 0.2 });
   cardFrontMat = new THREE.MeshStandardMaterial({
-    color: 0x22262f,
+    color: 0xffffff,
     metalness: 0.88,
     roughness: 0.22,
     clearcoat: 0.6,
     clearcoatRoughness: 0.15
   });
+  cardFrontMat.map = createCardTexture('stealth');
   
   const cardMaterials = [cardSideMat, cardSideMat, cardSideMat, cardSideMat, cardFrontMat, cardFrontMat];
   cardMesh = new THREE.Mesh(cardGeo, cardMaterials);
@@ -467,7 +469,8 @@ function setActiveArtifact(artifact) {
   const cardFinishBar = document.getElementById('cardFinishSelector');
 
   if (artifact === 'card') {
-    if (cardFrontMat && !cardFrontMat.map) {
+    if (cardFrontMat) {
+      cardFrontMat.color.setHex(0xffffff);
       cardFrontMat.map = createCardTexture(currentCardFinish || 'stealth');
       cardFrontMat.needsUpdate = true;
     }
