@@ -227,31 +227,34 @@
     </div>
 </div>
 
+
 <!-- Hero Section -->
-<section class="hero-serene" style="padding-top: 130px; padding-bottom: 4rem;">
+<section class="hero-section" id="overview">
     <div class="container">
-        <div class="hero-content" style="max-width: 820px; margin: 0 auto 3rem auto; text-align: center;">
-            <div class="calm-tag">✦ GLOBAL CAPITAL • PAYMENT TECHNOLOGIES • DIGITAL INFRASTRUCTURE</div>
-            <h1 class="serif-title gradient-text" style="margin-bottom: 1.25rem; font-size: clamp(2.4rem, 5.5vw, 4.2rem);">
-                Engineering Sovereign Payment Technologies &amp; Global Digital Infrastructure
-            </h1>
-            <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem;">
-                Gentech Group unifies Canadian investment governance, UAE high-security card and fintech engineering, and South Africa national-scale mobility operations into a singular, trusted global power.
-            </p>
-            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="#solutions" class="btn-primary">
-                    <span>Explore Solutions</span>
-                </a>
-                <a href="africa-national-mobility-program.html" class="btn-secondary">
-                    <span>South Africa National Program</span>
-                </a>
-                <a href="contact.html" class="btn-outline">
-                    <span>Contact Group</span>
-                </a>
-            </div>
-            
-            <!-- Co-presence Ticker -->
-            <div style="margin-top: 2rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-dim); font-weight: 600;">
+        <div class="calm-tag">✦ GLOBAL CAPITAL • PAYMENT TECHNOLOGIES • DIGITAL INFRASTRUCTURE</div>
+        <h1 class="serif-title">
+            Architecting Sovereign Payment Technologies <br>
+            <span class="gradient-text">&amp; Global Digital Infrastructure</span>
+        </h1>
+        <p class="hero-description">
+            Gentech Group unifies Canadian investment governance, UAE high-security card and fintech engineering, and South Africa national-scale mobility operations into a singular, trusted global power.
+        </p>
+
+        <div class="hero-cta-group">
+            <a href="#solutions" class="btn-primary">
+                <span>Explore Solutions</span>
+            </a>
+            <a href="africa-national-mobility-program.html" class="btn-secondary">
+                <span>South Africa National Program</span>
+            </a>
+            <a href="contact.html" class="btn-secondary">
+                <span>Contact Corporate Hubs</span>
+            </a>
+        </div>
+
+        <!-- Global Ticker -->
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <div class="hero-hubs-ticker">
                 <span>🍁 Toronto, Canada (Holding)</span>
                 <span>•</span>
                 <span>🇦🇪 Ras Al Khaimah, UAE (Tech &amp; Trade)</span>
@@ -260,39 +263,35 @@
             </div>
         </div>
 
-        <!-- 3D WebGL Studio & Interactive Artifact Section -->
-        <div class="canvas3d-container" style="margin-top: 2rem; background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.9) 0%, rgba(243,228,214,0.6) 100%); border-radius: var(--radius-lg); border: 1px solid var(--border-light); padding: 2.5rem; box-shadow: var(--shadow-card);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-                <div>
-                    <span class="calm-tag" style="margin-bottom: 0.3rem;">3D HARDWARE LAB</span>
-                    <h3 style="font-size: 1.4rem; font-weight: 700;">Precision Card &amp; Wearable Architecture</h3>
+        <!-- 3D Studio Stage (Smart Ring & Titanium Card) -->
+        <div class="hero-3d-box">
+            <div id="canvas3D"></div>
+            
+            <div class="studio-toolbar">
+                <div class="artifact-toggle-group">
+                    <button class="toolbar-btn active artifact-toggle-btn" data-artifact="ring" aria-label="View Galaxy Smart Ring 3D">💍 Galaxy Smart Ring</button>
+                    <button class="toolbar-btn artifact-toggle-btn" data-artifact="card" aria-label="View Titanium Card 3D">💳 Sovereign Titanium Card</button>
                 </div>
-                <div style="display: flex; gap: 0.5rem;">
-                    <button class="artifact-toggle-btn active" data-artifact="card">Sovereign Titanium Card</button>
-                    <button class="artifact-toggle-btn" data-artifact="ring">Apex NFC Ring</button>
-                </div>
-            </div>
-
-            <div style="position: relative; width: 100%; height: 420px; border-radius: var(--radius-md); overflow: hidden; background: #FAF2EB;" id="canvasWrapper">
-                <canvas id="webglCanvas" style="width: 100%; height: 100%; display: block;"></canvas>
                 
-                <div style="position: absolute; bottom: 15px; left: 15px; background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.78rem; font-family: var(--font-mono); color: var(--text-main); border: 1px solid var(--border-light);">
-                    <span>Interactive 3D GPU Engine • Rotate with Mouse / Touch</span>
+                <!-- Ring Finish Sub-toolbar -->
+                <div class="finish-selector" id="ringFinishSelector">
+                    <button class="finish-pill-btn ring-finish-btn active" data-finish="silver" aria-label="Titanium Silver finish">Titanium Silver</button>
+                    <button class="finish-pill-btn ring-finish-btn" data-finish="black" aria-label="Titanium Black finish">Titanium Black</button>
+                    <button class="finish-pill-btn ring-finish-btn" data-finish="gold" aria-label="Titanium Gold finish">Titanium Gold</button>
                 </div>
 
-                <div id="cardFinishSelector" style="position: absolute; bottom: 15px; right: 15px; display: flex; gap: 0.4rem;">
-                    <button class="card-finish-btn active" data-card-finish="stealth" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background:#1A130E; color:#fff; border-radius:var(--radius-full);">Stealth Metal</button>
-                    <button class="card-finish-btn" data-card-finish="titanium" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background:#E5E5E5; color:#1A130E; border-radius:var(--radius-full);">Pale Titanium</button>
-                    <button class="card-finish-btn" data-card-finish="gold" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background:#D4AF37; color:#1A130E; border-radius:var(--radius-full);">24K Gold</button>
-                    <button class="card-finish-btn" data-card-finish="ceramic" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background:#F8F9FA; color:#1A130E; border-radius:var(--radius-full);">Ceramic</button>
-                </div>
-
-                <div id="ringFinishSelector" class="hidden" style="position: absolute; bottom: 15px; right: 15px; display: flex; gap: 0.4rem;">
-                    <button class="ring-finish-btn active" data-finish="silver" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background:#E5E5E5; color:#1A130E; border-radius:var(--radius-full);">Silver</button>
-                    <button class="ring-finish-btn" data-finish="black" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background:#1A130E; color:#fff; border-radius:var(--radius-full);">Black</button>
-                    <button class="ring-finish-btn" data-finish="gold" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background:#D4AF37; color:#1A130E; border-radius:var(--radius-full);">Gold</button>
+                <!-- Card Finish Sub-toolbar -->
+                <div class="finish-selector hidden" id="cardFinishSelector">
+                    <button class="finish-pill-btn card-finish-btn active" data-card-finish="stealth" aria-label="Stealth Black finish">Stealth Black</button>
+                    <button class="finish-pill-btn card-finish-btn" data-card-finish="titanium" aria-label="Pale Titanium finish">Pale Titanium</button>
+                    <button class="finish-pill-btn card-finish-btn" data-card-finish="gold" aria-label="24K Mirror Gold finish">24K Mirror Gold</button>
+                    <button class="finish-pill-btn card-finish-btn" data-card-finish="ceramic" aria-label="Hermes Ceramic finish">Ceramic</button>
                 </div>
             </div>
+        </div>
+        
+        <div class="hero-hint">
+            ✦ Drag to rotate artifacts in 3D space • Switch metal finishes &amp; concave contours in real time
         </div>
     </div>
 </section>
@@ -801,6 +800,8 @@
 </footer>
 
 <!-- Core Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="assets/js/scene3d.js?v=21.0"></script>
 <script src="assets/js/app.js?v=21.0"></script>
 </body>
 </html>

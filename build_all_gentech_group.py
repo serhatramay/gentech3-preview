@@ -258,8 +258,8 @@ def get_page_banner(title, sub, crumb, badge="✦ GENTECH GROUP • GLOBAL INFRA
 </div>
 """
 
-def get_footer():
-    return """
+def get_footer(extra_scripts=""):
+    return f"""
 <!-- Corporate Footer -->
 <footer class="footer-serene">
     <div class="container">
@@ -367,6 +367,7 @@ def get_footer():
 </footer>
 
 <!-- Core Scripts -->
+{extra_scripts}
 <script src="assets/js/app.js?v=21.0"></script>
 </body>
 </html>
