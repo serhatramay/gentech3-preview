@@ -1247,11 +1247,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .footer-top-grid {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 2.5rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none !important;
 }
 
 @media (max-width: 980px) {
@@ -2361,7 +2357,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .footer-top-grid {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-bottom: none !important;
 }
 
 .footer-top-grid .brand-title { color: #FFFFFF !important; }
@@ -2815,4 +2811,16 @@ img { max-width: 100%; height: auto; display: block; }
     padding-top: 3rem !important;
     padding-bottom: 3rem !important;
   }
+}
+
+/* Single Clean Divider in Footer */
+.footer-top-grid {
+  border-bottom: none !important;
+  padding-bottom: 1.5rem !important;
+}
+
+.footer-legal-entities {
+  margin-top: 1.5rem !important;
+  padding-top: 2rem !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
 }
