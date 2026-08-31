@@ -1,10 +1,26 @@
-<!DOCTYPE html>
+import os
+import sys
+
+BASE_DIR = "/Users/ramay/gentech3-app"
+
+def get_header(title, desc, active_nav=""):
+    nav_home = "active" if active_nav == "home" else ""
+    nav_about = "active" if active_nav == "about" else ""
+    nav_chairman = "active" if active_nav == "chairman" else ""
+    nav_group = "active" if active_nav == "group" else ""
+    nav_solutions = "active" if active_nav == "solutions" else ""
+    nav_africa = "active" if active_nav == "africa" else ""
+    nav_projects = "active" if active_nav == "projects" else ""
+    nav_news = "active" if active_nav == "news" else ""
+    nav_contact = "active" if active_nav == "contact" else ""
+
+    return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>About Gentech Group — Global Capital, Technology & Operations | GENTECH GROUP</title>
-    <meta name="description" content="Learn about Gentech Group's tri-continental holding architecture across Canada, UAE, and South Africa, executive governance, and sovereign infrastructure mission.">
+    <title>{title} | GENTECH GROUP</title>
+    <meta name="description" content="{desc}">
     <meta name="keywords" content="Gentech Group, payment technologies, smart cards, EMV cards, titanium cards, digital mobility, SANTACO, TaxiChoice, fintech infrastructure, Toronto, Ras Al Khaimah, Johannesburg">
     <meta name="author" content="GENTECH GROUP">
     <meta name="robots" content="index, follow">
@@ -12,8 +28,8 @@
 
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="About Gentech Group — Global Capital, Technology & Operations | GENTECH GROUP">
-    <meta property="og:description" content="Learn about Gentech Group's tri-continental holding architecture across Canada, UAE, and South Africa, executive governance, and sovereign infrastructure mission.">
+    <meta property="og:title" content="{title} | GENTECH GROUP">
+    <meta property="og:description" content="{desc}">
     <meta property="og:site_name" content="GENTECH GROUP">
     <meta property="og:image" content="assets/images/about.webp">
 
@@ -27,7 +43,7 @@
 
     <!-- Structured Data (Schema.org) -->
     <script type="application/ld+json">
-    {
+    {{
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "GENTECH GROUP",
@@ -36,37 +52,37 @@
       "description": "Global Capital, Payment Technologies and Digital Infrastructure",
       "foundingLocation": "Canada • United Arab Emirates • South Africa",
       "subOrganization": [
-        {
+        {{
           "@type": "Corporation",
           "name": "GENTECH CAPITAL HOLDINGS INC.",
-          "address": {
+          "address": {{
             "@type": "PostalAddress",
             "addressLocality": "Toronto",
             "addressRegion": "Ontario",
             "addressCountry": "Canada"
-          }
-        },
-        {
+          }}
+        }},
+        {{
           "@type": "Corporation",
           "name": "GENTECH GLOBAL FZ-LLC",
-          "address": {
+          "address": {{
             "@type": "PostalAddress",
             "streetAddress": "Compass Building, Al Shohada Road, AL Hamra Industrial Zone-FZ",
             "addressLocality": "Ras Al Khaimah",
             "addressCountry": "United Arab Emirates"
-          }
-        },
-        {
+          }}
+        }},
+        {{
           "@type": "Corporation",
           "name": "GENTECH CAPITAL HOLDING (PTY) LTD",
-          "address": {
+          "address": {{
             "@type": "PostalAddress",
             "addressLocality": "Johannesburg",
             "addressCountry": "South Africa"
-          }
-        }
+          }}
+        }}
       ]
-    }
+    }}
     </script>
 </head>
 <body>
@@ -100,13 +116,13 @@
             </a>
 
             <div class="nav-links">
-                <a href="index.html" class="nav-link ">Home</a>
-                <a href="about.html" class="nav-link active">About</a>
-                <a href="chairman.html" class="nav-link ">Chairman</a>
+                <a href="index.html" class="nav-link {nav_home}">Home</a>
+                <a href="about.html" class="nav-link {nav_about}">About</a>
+                <a href="chairman.html" class="nav-link {nav_chairman}">Chairman</a>
                 
                 <!-- Group Companies Dropdown -->
                 <div class="nav-dropdown-wrapper">
-                    <a href="about.html#entities" class="nav-link ">Group Companies ▾</a>
+                    <a href="about.html#entities" class="nav-link {nav_group}">Group Companies ▾</a>
                     <div class="nav-dropdown-menu">
                         <a href="group-canada.html" class="dropdown-item">
                             <strong>Gentech Canada</strong>
@@ -125,7 +141,7 @@
 
                 <!-- Solutions Dropdown (The 6 Pillars) -->
                 <div class="nav-dropdown-wrapper">
-                    <a href="solutions-cards.html" class="nav-link ">Solutions ▾</a>
+                    <a href="solutions-cards.html" class="nav-link {nav_solutions}">Solutions ▾</a>
                     <div class="nav-dropdown-menu solutions-menu">
                         <a href="solutions-cards.html" class="dropdown-item">
                             <strong>Cards &amp; Card Manufacturing</strong>
@@ -155,10 +171,10 @@
                 </div>
 
                 <!-- Africa National Program -->
-                <a href="africa-national-mobility-program.html" class="nav-link ">Africa Program</a>
-                <a href="projects.html" class="nav-link ">Projects</a>
-                <a href="news.html" class="nav-link ">News</a>
-                <a href="contact.html" class="nav-link ">Contact</a>
+                <a href="africa-national-mobility-program.html" class="nav-link {nav_africa}">Africa Program</a>
+                <a href="projects.html" class="nav-link {nav_projects}">Projects</a>
+                <a href="news.html" class="nav-link {nav_news}">News</a>
+                <a href="contact.html" class="nav-link {nav_contact}">Contact</a>
             </div>
 
             <div class="nav-actions">
@@ -169,99 +185,24 @@
         </nav>
     </div>
 </header>
+"""
 
+def get_page_banner(title, sub, crumb, badge="✦ GENTECH GROUP • GLOBAL INFRASTRUCTURE"):
+    return f"""
 <div class="page-banner-header">
     <div class="container">
-        <div class="calm-tag" style="margin-bottom: 0.8rem;">✦ GENTECH GROUP • CORPORATE PROFILE</div>
-        <h1 class="serif-title page-banner-title">About Gentech Group</h1>
-        <p class="page-banner-sub">A Tri-Continental Architecture of Capital, Technology Engineering, and Field Operations.</p>
+        <div class="calm-tag" style="margin-bottom: 0.8rem;">{badge}</div>
+        <h1 class="serif-title page-banner-title">{title}</h1>
+        <p class="page-banner-sub">{sub}</p>
         <div class="breadcrumbs-trail">
-            <a href="index.html">Home</a> <span>/</span> <span class="current-crumb">About Gentech Group</span>
+            <a href="index.html">Home</a> <span>/</span> <span class="current-crumb">{crumb}</span>
         </div>
     </div>
 </div>
+"""
 
-<section class="section-spacing">
-    <div class="container">
-        <div class="detail-page-layout">
-            <div class="detail-main-content">
-                <span class="calm-tag">SOVEREIGN MISSION &amp; VISION</span>
-                <h2 class="serif-title" style="margin-bottom: 1.25rem;">Transforming Critical Infrastructure into Long-Term Economic Value</h2>
-                <p>
-                    Gentech Group is an international holding and technology group operating at the nexus of high-security payment engineering, sovereign digital infrastructure, telecommunications, and long-term public-private partnerships.
-                </p>
-                <p>
-                    Rooted in a disciplined tri-continental model, Gentech Group bridges North American capital mobilization (Canada), Middle Eastern technical manufacturing and global trade (United Arab Emirates), and African operational field deployment (South Africa). We do not merely manufacture cards or build standalone software; we engineer, deploy, and operate end-to-end mission-critical financial ecosystems.
-                </p>
-
-                <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;" id="entities">The Tri-Continental Holding Model</h3>
-                <p>
-                    To ensure absolute legal clarity, regulatory compliance, and operational excellence, Gentech Group operates through three distinct, legally verified corporate entities:
-                </p>
-
-                <div style="display: flex; flex-direction: column; gap: 1.5rem; margin: 2rem 0;">
-                    <div style="background: #fff; border: 1px solid var(--border-light); border-left: 4px solid var(--accent-hermes); border-radius: var(--radius-md); padding: 1.8rem; box-shadow: var(--shadow-soft);">
-                        <span class="calm-tag" style="margin-bottom: 0.4rem;">CANADA • PARENT HOLDING</span>
-                        <h4 style="font-size: 1.2rem; margin-bottom: 0.3rem;">GENTECH CAPITAL HOLDINGS INC.</h4>
-                        <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.8rem;">
-                            Headquartered in Toronto, Ontario, Canada. Serves as the overarching holding company responsible for capital allocation, international treasury governance, equity participation, and strategic global partnerships.
-                        </p>
-                        <a href="group-canada.html" class="pillar-link">View Canada Holding Profile →</a>
-                    </div>
-
-                    <div style="background: #fff; border: 1px solid var(--border-light); border-left: 4px solid var(--accent-hermes); border-radius: var(--radius-md); padding: 1.8rem; box-shadow: var(--shadow-soft);">
-                        <span class="calm-tag" style="margin-bottom: 0.4rem;">UAE • TECHNOLOGY &amp; TRADE HUB</span>
-                        <h4 style="font-size: 1.2rem; margin-bottom: 0.3rem;">GENTECH GLOBAL FZ-LLC</h4>
-                        <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.8rem;">
-                            Registered in the Ras Al Khaimah Economic Zone (RAKEZ), UAE. Directs smart card production, EMV personalisation, bespoke chip module design, Android POS terminal hardware, and international telecommunications procurement.
-                        </p>
-                        <a href="group-uae.html" class="pillar-link">View UAE Technology Hub Profile →</a>
-                    </div>
-
-                    <div style="background: #fff; border: 1px solid var(--border-light); border-left: 4px solid var(--accent-hermes); border-radius: var(--radius-md); padding: 1.8rem; box-shadow: var(--shadow-soft);">
-                        <span class="calm-tag" style="margin-bottom: 0.4rem;">SOUTH AFRICA • AFRICA OPERATIONS HUB</span>
-                        <h4 style="font-size: 1.2rem; margin-bottom: 0.3rem;">GENTECH CAPITAL HOLDING (PTY) LTD</h4>
-                        <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 0.8rem;">
-                            Headquartered in Johannesburg, South Africa. Functions as Gentech Group's dedicated African operating entity, spearheading regional infrastructure programs including the 10-year National Mobility &amp; Payments Program with SANTACO/TaxiChoice.
-                        </p>
-                        <a href="group-africa.html" class="pillar-link">View South Africa Operations Profile →</a>
-                    </div>
-                </div>
-
-                <h3 style="margin-top: 2.5rem; margin-bottom: 1rem;" id="governance">Corporate Governance &amp; Ethical Standards</h3>
-                <p>
-                    Gentech Group adheres to world-class regulatory standards. We maintain strict compliance with Anti-Money Laundering (AML), Know Your Customer (KYC), General Data Protection Regulation (GDPR), South Africa's Protection of Personal Information Act (POPIA), and UAE Federal Data Protection frameworks.
-                </p>
-            </div>
-
-            <!-- Sidebar -->
-            <div class="detail-sidebar">
-                <div class="sidebar-box">
-                    <span class="calm-tag" style="margin-bottom: 0.5rem;">QUICK FACTS</span>
-                    <h4 style="margin-bottom: 1rem;">Gentech at a Glance</h4>
-                    
-                    <div style="display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.88rem; color: var(--text-muted);">
-                        <div><strong>Parent Brand:</strong> GENTECH GROUP</div>
-                        <div><strong>Global Presence:</strong> Canada • UAE • South Africa</div>
-                        <div><strong>Executive Chairman:</strong> Mustafa Sertkaya</div>
-                        <div><strong>Primary Sectors:</strong> Payments, Smart Cards, Transit Mobility, 5G Telecom, Sovereign Infrastructure</div>
-                        <div><strong>Flagship Program:</strong> SANTACO 10-Year National Mobility Program</div>
-                    </div>
-
-                    <hr style="border: 0; border-top: 1px solid var(--border-light); margin: 1.5rem 0;">
-
-                    <a href="chairman.html" class="btn-primary" style="width: 100%; text-align: center; display: block;">
-                        <span>Chairman's Statement</span>
-                    </a>
-                    <a href="contact.html" class="btn-secondary" style="width: 100%; text-align: center; display: block; margin-top: 0.5rem;">
-                        <span>Contact Corporate Office</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+def get_footer():
+    return """
 <!-- Corporate Footer -->
 <footer class="footer-serene">
     <div class="container">
@@ -372,3 +313,12 @@
 <script src="assets/js/app.js?v=20.0"></script>
 </body>
 </html>
+"""
+
+def write_file(filename, content):
+    filepath = os.path.join(BASE_DIR, filename)
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"Generated: {filename}")
+
+print("Base layout templates defined.")
