@@ -236,8 +236,8 @@ def get_header(title, desc, active_nav=""):
         <a href="contact.html" class="mobile-drawer-link">Contact Corporate Hubs</a>
     </div>
 
-    <div style="margin-top: auto; padding-top: 2rem;">
-        <a href="contact.html" class="btn-primary" style="width: 100%; text-align: center; display: block;">
+    <div class="mobile-drawer-footer">
+        <a href="contact.html" class="btn-primary">
             <span>Submit Institutional Inquiry</span>
         </a>
     </div>
