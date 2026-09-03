@@ -72,13 +72,25 @@ def deploy():
         
         uploaded_count = 0
         for im in img_files:
+            lp = os.path.join(img_dir, im)
+            need_upload = False
             if im not in remote_existing:
-                with open(os.path.join(img_dir, im), 'rb') as f:
+                need_upload = True
+            else:
+                try:
+                    r_size = ftp.size(im)
+                    l_size = os.path.getsize(lp)
+                    if r_size != l_size:
+                        need_upload = True
+                except Exception:
+                    need_upload = True
+            
+            if need_upload:
+                with open(lp, 'rb') as f:
                     ftp.storbinary(f"STOR {im}", f)
                 uploaded_count += 1
-                if uploaded_count % 10 == 0:
-                    print(f"  ...uploaded {uploaded_count} new images")
-        print(f"✓ Images synchronized! ({uploaded_count} new uploaded, {len(img_files) - uploaded_count} already up-to-date)")
+                print(f"  ✓ Uploaded assets/images/{im}")
+        print(f"✓ Images synchronized! ({uploaded_count} uploaded/updated, {len(img_files) - uploaded_count} already identical)")
 
     ftp.quit()
     print("\n" + "="*60)
