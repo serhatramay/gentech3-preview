@@ -1489,7 +1489,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* Pillar Themed Backgrounds */
 .page-banner-header.banner-cards {
-  background-image: url('../images/metalcard.webp');
+  background-image: url('../images/cards_banner.webp');
 }
 
 .page-banner-header.banner-payments {
