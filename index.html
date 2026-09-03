@@ -264,8 +264,53 @@
         </div>
 
         <!-- 3D Studio Stage (Smart Ring & Titanium Card) -->
-        <div class="hero-3d-box">
+        <div class="hero-3d-box" id="heroStudioBox">
             <div id="canvas3D"></div>
+            
+            <!-- Photorealistic Exploded Smart Ring Stage -->
+            <div id="ringShowcaseStage" class="ring-showcase-stage">
+                <div class="ring-interactive-wrapper" id="ringInteractiveWrapper">
+                    <img id="ringHeroImg" 
+                         src="assets/images/smart_ring_gold.webp" 
+                         alt="Gentech Sovereign Smart Ring — Exploded Micro-Architecture" 
+                         class="ring-hero-img"
+                         loading="eager"
+                         fetchpriority="high">
+                    <div class="ring-ambient-glow"></div>
+                </div>
+
+                <!-- Floating Spec Badges -->
+                <div class="ring-spec-callouts">
+                    <div class="spec-badge spec-top-left">
+                        <span class="spec-dot"></span>
+                        <div class="spec-badge-content">
+                            <strong>Grade-5 Titanium</strong>
+                            <small>CNC Monolith Billet</small>
+                        </div>
+                    </div>
+                    <div class="spec-badge spec-top-right">
+                        <span class="spec-dot"></span>
+                        <div class="spec-badge-content">
+                            <strong>Optical Bio-Resin</strong>
+                            <small>Sensor Core &amp; Lenses</small>
+                        </div>
+                    </div>
+                    <div class="spec-badge spec-bottom-left">
+                        <span class="spec-dot"></span>
+                        <div class="spec-badge-content">
+                            <strong>Flexible Multi-Layer PCB</strong>
+                            <small>Ultra-Dense Micro-Traces</small>
+                        </div>
+                    </div>
+                    <div class="spec-badge spec-bottom-right">
+                        <span class="spec-dot"></span>
+                        <div class="spec-badge-content">
+                            <strong>CC EAL6+ Silicon</strong>
+                            <small>Hardware NFC Root-of-Trust</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
             <div class="studio-toolbar">
                 <div class="artifact-toggle-group">
@@ -275,9 +320,9 @@
                 
                 <!-- Ring Finish Sub-toolbar -->
                 <div class="finish-selector" id="ringFinishSelector">
-                    <button class="finish-pill-btn ring-finish-btn active" data-finish="silver" aria-label="Titanium Silver finish">Titanium Silver</button>
+                    <button class="finish-pill-btn ring-finish-btn active" data-finish="gold" aria-label="Titanium Gold finish">Titanium Gold</button>
+                    <button class="finish-pill-btn ring-finish-btn" data-finish="silver" aria-label="Titanium Silver finish">Titanium Silver</button>
                     <button class="finish-pill-btn ring-finish-btn" data-finish="black" aria-label="Titanium Black finish">Titanium Black</button>
-                    <button class="finish-pill-btn ring-finish-btn" data-finish="gold" aria-label="Titanium Gold finish">Titanium Gold</button>
                 </div>
 
                 <!-- Card Finish Sub-toolbar -->

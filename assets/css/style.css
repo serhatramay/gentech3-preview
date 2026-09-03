@@ -310,6 +310,192 @@ img { max-width: 100%; height: auto; display: block; }
   display: block;
 }
 
+/* ==========================================================================
+   PHOTOREALISTIC EXPLODED SMART RING STAGE (ULTRA-LUXURY ARCHITECTURE)
+   ========================================================================== */
+.ring-showcase-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.ring-showcase-stage.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.ring-interactive-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 480px;
+  max-height: 480px;
+  width: 82%;
+  height: 82%;
+  transform-style: preserve-3d;
+  transition: transform 0.18s cubic-bezier(0.2, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.ring-hero-img {
+  max-width: 90%;
+  max-height: 380px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 38px rgba(0, 0, 0, 0.15));
+  transform: translateZ(30px);
+  transition: opacity 0.25s ease, filter 0.3s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+  animation: ringGentleFloat 4.5s ease-in-out infinite;
+}
+
+@keyframes ringGentleFloat {
+  0%, 100% {
+    transform: translateZ(30px) translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateZ(30px) translateY(-9px) rotate(0.8deg);
+  }
+}
+
+.ring-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(235, 101, 26, 0.16) 0%, rgba(255, 230, 0, 0.06) 45%, transparent 72%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+  animation: ringPulseGlow 3.6s ease-in-out infinite;
+}
+
+@keyframes ringPulseGlow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.92);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* Precision Micro-Architecture Callout Badges */
+.ring-spec-callouts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.spec-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(235, 101, 26, 0.22);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+  font-family: var(--font-sans);
+  pointer-events: auto;
+  transition: all 0.25s ease;
+}
+
+.spec-badge:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-hermes);
+  box-shadow: 0 6px 22px rgba(235, 101, 26, 0.18);
+}
+
+.spec-top-left {
+  top: 18%;
+  left: 6%;
+}
+
+.spec-top-right {
+  top: 18%;
+  right: 6%;
+}
+
+.spec-bottom-left {
+  bottom: 22%;
+  left: 6%;
+}
+
+.spec-bottom-right {
+  bottom: 22%;
+  right: 6%;
+}
+
+.spec-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent-hermes);
+  box-shadow: 0 0 8px rgba(235, 101, 26, 0.8);
+  flex-shrink: 0;
+}
+
+.spec-badge-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-badge-content strong {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.spec-badge-content small {
+  font-size: 0.64rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+  .spec-top-left { top: 12%; left: 3%; }
+  .spec-top-right { top: 12%; right: 3%; }
+  .spec-bottom-left { display: none; }
+  .spec-bottom-right { display: none; }
+}
+
+@media (max-width: 680px) {
+  .ring-spec-callouts { display: none !important; }
+  .ring-hero-img {
+    max-height: 250px;
+    max-width: 95%;
+  }
+}
+
+
 .studio-toolbar {
   position: absolute;
   bottom: 20px;

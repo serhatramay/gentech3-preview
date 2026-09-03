@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const artifactBtns = document.querySelectorAll('.artifact-toggle-btn');
   const ringFinishSelector = document.getElementById('ringFinishSelector');
   const cardFinishSelector = document.getElementById('cardFinishSelector');
+  const ringShowcaseStage = document.getElementById('ringShowcaseStage');
 
   artifactBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -38,27 +39,87 @@ document.addEventListener('DOMContentLoaded', () => {
       if (art === 'ring') {
         if (ringFinishSelector) ringFinishSelector.classList.remove('hidden');
         if (cardFinishSelector) cardFinishSelector.classList.add('hidden');
+        if (ringShowcaseStage) ringShowcaseStage.classList.remove('hidden');
       } else {
         if (ringFinishSelector) ringFinishSelector.classList.add('hidden');
         if (cardFinishSelector) cardFinishSelector.classList.remove('hidden');
+        if (ringShowcaseStage) ringShowcaseStage.classList.add('hidden');
       }
       
       if (typeof setActiveArtifact === 'function') setActiveArtifact(art);
     });
   });
 
-  // 2. Ring Titanium Finish Selector (Silver, Black, Gold)
+  // 2. Ring Titanium Finish Selector (Gold, Silver, Black)
   const ringFinishBtns = document.querySelectorAll('.ring-finish-btn');
+  const ringHeroImg = document.getElementById('ringHeroImg');
+
   ringFinishBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       ringFinishBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const finish = btn.getAttribute('data-finish');
+      
+      if (ringHeroImg) {
+        ringHeroImg.style.opacity = '0.2';
+        setTimeout(() => {
+          if (finish === 'gold') {
+            ringHeroImg.src = 'assets/images/smart_ring_gold.webp';
+          } else if (finish === 'silver') {
+            ringHeroImg.src = 'assets/images/smart_ring_silver.webp';
+          } else if (finish === 'black') {
+            ringHeroImg.src = 'assets/images/smart_ring_black.webp';
+          }
+          ringHeroImg.style.opacity = '1';
+        }, 120);
+      }
+      
       if (typeof setRingTitaniumFinish === 'function') setRingTitaniumFinish(finish);
     });
   });
 
-  // 3. 3D Card Finish Selector (Stealth Black, Pale Titanium, Gold, Ceramic)
+  // 3. Interactive 3D Perspective Tilt for Ring Showcase
+  const studioBox = document.getElementById('heroStudioBox');
+  const ringWrapper = document.getElementById('ringInteractiveWrapper');
+
+  if (studioBox && ringWrapper) {
+    let isHovered = false;
+
+    studioBox.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    studioBox.addEventListener('mousemove', (e) => {
+      const rect = studioBox.getBoundingClientRect();
+      const x = e.clientX - (rect.left + rect.width / 2);
+      const y = e.clientY - (rect.top + rect.height / 2);
+      const rotY = (x / (rect.width / 2)) * 14;
+      const rotX = -(y / (rect.height / 2)) * 11;
+      ringWrapper.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+    }, { passive: true });
+
+    studioBox.addEventListener('mouseleave', () => {
+      isHovered = false;
+      ringWrapper.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+
+    studioBox.addEventListener('touchmove', (e) => {
+      if (e.touches.length === 1) {
+        const rect = studioBox.getBoundingClientRect();
+        const x = e.touches[0].clientX - (rect.left + rect.width / 2);
+        const y = e.touches[0].clientY - (rect.top + rect.height / 2);
+        const rotY = (x / (rect.width / 2)) * 14;
+        const rotX = -(y / (rect.height / 2)) * 11;
+        ringWrapper.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg)`;
+      }
+    }, { passive: true });
+
+    studioBox.addEventListener('touchend', () => {
+      ringWrapper.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+  }
+
+  // 4. 3D Card Finish Selector (Stealth Black, Pale Titanium, Gold, Ceramic)
   const cardFinishBtns = document.querySelectorAll('.card-finish-btn');
   cardFinishBtns.forEach(btn => {
     btn.addEventListener('click', () => {

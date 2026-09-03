@@ -467,8 +467,11 @@ function setActiveArtifact(artifact) {
   const isMobile = container && (container.clientWidth / container.clientHeight < 0.9);
   const ringFinishBar = document.getElementById('ringFinishSelector');
   const cardFinishBar = document.getElementById('cardFinishSelector');
+  const ringShowcase = document.getElementById('ringShowcaseStage');
 
   if (artifact === 'card') {
+    if (ringShowcase) ringShowcase.classList.add('hidden');
+
     if (cardFrontMat) {
       cardFrontMat.color.setHex(0xffffff);
       cardFrontMat.map = createCardTexture(currentCardFinish || 'stealth');
@@ -488,14 +491,16 @@ function setActiveArtifact(artifact) {
     if (ringFinishBar) ringFinishBar.style.display = 'none';
     if (cardFinishBar) cardFinishBar.style.display = 'flex';
   } else if (artifact === 'ring') {
+    if (ringShowcase) ringShowcase.classList.remove('hidden');
+
     if (camera) camera.position.set(0, 0, isMobile ? 11 : 9.5);
-    if (ringGroup) {
-      ringGroup.position.set(0, 0, 0);
-      ringGroup.scale.set(isMobile ? 1.25 : 1.45, isMobile ? 1.25 : 1.45, isMobile ? 1.25 : 1.45);
-    }
     if (cardGroup) {
       cardGroup.position.set(0, -15, 0);
       cardGroup.scale.set(0.001, 0.001, 0.001);
+    }
+    if (ringGroup) {
+      ringGroup.position.set(0, 15, 0);
+      ringGroup.scale.set(0.001, 0.001, 0.001);
     }
 
     if (ringFinishBar) ringFinishBar.style.display = 'flex';
