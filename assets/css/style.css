@@ -1463,9 +1463,53 @@ img { max-width: 100%; height: auto; display: block; }
 .page-banner-header {
   padding-top: 130px;
   padding-bottom: 3.5rem;
-  background: linear-gradient(180deg, var(--bg-primary) 0%, #FFFFFF 100%);
+  background-color: var(--bg-primary);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-bottom: 1px solid var(--border-light);
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-banner-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(250, 242, 235, 0.88) 0%, rgba(255, 255, 255, 0.94) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.page-banner-header > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Pillar Themed Backgrounds */
+.page-banner-header.banner-cards {
+  background-image: url('../images/metalcard.webp');
+}
+
+.page-banner-header.banner-payments {
+  background-image: url('../images/pos.webp');
+}
+
+.page-banner-header.banner-mobility {
+  background-image: url('../images/transportcards.webp');
+}
+
+.page-banner-header.banner-telecom {
+  background-image: url('../images/supersim.webp');
+}
+
+.page-banner-header.banner-infrastructure {
+  background-image: url('../images/service-6.webp');
+}
+
+.page-banner-header.banner-capital {
+  background-image: url('../images/about.webp');
 }
 
 .page-banner-title {
