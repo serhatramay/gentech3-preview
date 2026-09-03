@@ -1477,7 +1477,7 @@ img { max-width: 100%; height: auto; display: block; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(250, 242, 235, 0.88) 0%, rgba(255, 255, 255, 0.94) 100%);
+  background: linear-gradient(180deg, rgba(250, 242, 235, 0.45) 0%, rgba(255, 255, 255, 0.65) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -1515,12 +1515,16 @@ img { max-width: 100%; height: auto; display: block; }
 .page-banner-title {
   font-size: clamp(2rem, 4.5vw, 3.2rem);
   font-weight: 700;
+  color: var(--text-main);
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.85);
   margin-bottom: 0.5rem;
 }
 
 .page-banner-sub {
   font-size: 1.05rem;
-  color: var(--text-muted);
+  color: #382A20;
+  font-weight: 500;
+  text-shadow: 0 1px 8px rgba(255, 255, 255, 0.85);
   max-width: 680px;
   margin: 0 auto 1.25rem auto;
 }
@@ -1531,6 +1535,12 @@ img { max-width: 100%; height: auto; display: block; }
   gap: 0.5rem;
   font-size: 0.84rem;
   color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(235, 101, 26, 0.18);
 }
 
 .breadcrumbs-trail a {
