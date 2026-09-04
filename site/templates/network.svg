@@ -1,0 +1,11 @@
+<svg viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="network-title network-desc">
+<title id="network-title">Gentech Group global operating network</title><desc id="network-desc">Toronto connects capital and investment with technology in Ras Al Khaimah and operations in Johannesburg. Conceptual diagram, not a geographic map.</desc>
+<defs><pattern id="net-grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#b7afa2" opacity=".42"/></pattern><radialGradient id="net-glow"><stop stop-color="#eb651a" stop-opacity=".13"/><stop offset="1" stop-color="#eb651a" stop-opacity="0"/></radialGradient></defs>
+<rect width="600" height="520" fill="url(#net-grid)"/><circle cx="302" cy="265" r="248" fill="url(#net-glow)"/>
+<g fill="none" stroke="#d6c8b8"><ellipse cx="305" cy="260" rx="210" ry="192"/><ellipse cx="305" cy="260" rx="130" ry="192"/><ellipse cx="305" cy="260" rx="48" ry="192"/><path d="M100 208h410M100 312h410M151 119h308M151 401h308"/></g>
+<g fill="none" stroke="#d8662c" stroke-width="1.6"><path d="M143 169Q322 40 449 222"/><path d="M449 222Q449 350 325 400"/><path d="M325 400Q142 336 143 169"/></g>
+<g fill="#fffaf4" stroke="#de6225" stroke-width="2"><circle cx="143" cy="169" r="8"/><circle cx="449" cy="222" r="8"/><circle cx="325" cy="400" r="8"/></g>
+<g fill="#dd6326" opacity=".12"><circle cx="143" cy="169" r="23"/><circle cx="449" cy="222" r="23"/><circle cx="325" cy="400" r="23"/></g>
+<g font-family="Arial,sans-serif" fill="#352b23"><text x="72" y="121" font-size="20" font-weight="700">Toronto</text><text x="72" y="142" font-size="12" letter-spacing="1.5">CAPITAL</text><text x="358" y="163" font-size="20" font-weight="700">Ras Al Khaimah</text><text x="358" y="184" font-size="12" letter-spacing="1.5">TECHNOLOGY</text><text x="330" y="446" font-size="20" font-weight="700">Johannesburg</text><text x="330" y="467" font-size="12" letter-spacing="1.5">OPERATIONS</text></g>
+<g font-family="Arial,sans-serif" text-anchor="middle"><text x="290" y="272" font-size="21" font-weight="700" fill="#30271f" letter-spacing="2">GENTECH</text><text x="290" y="294" font-size="11" fill="#7b6b5c" letter-spacing="5">GROUP</text></g>
+</svg>

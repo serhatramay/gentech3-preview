@@ -1,0 +1,13 @@
+# GitHub Pages: publish the website, not local build/deployment tooling.
+exclude:
+  - "*.py"
+  - site
+  - docs
+  - README.md
+  - DEPLOYMENT_GUIDE.md
+  - vercel.json
+  - render.yaml
+  - assets/js/app.js
+  - assets/js/audio.js
+  - assets/js/portal.js
+  - assets/js/simulator.js

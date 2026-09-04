@@ -1,8 +1,8 @@
 /**
- * GenTech 3 - Ultra-Realistic 3D Atelier (Optimized Edition)
+ * Gentech Group - Interactive Product Studio
  * Dynamic Live 3D Configurator for:
- * 1. Samsung Galaxy Ring (Concave Titanium Smart Ring - Silver, Black, Gold)
- * 2. Sovereign Titanium Card (Stealth Black, Pale Titanium, 24K Gold, Hermes Ceramic)
+ * 1. Illustrative wearable design (Silver, Black, Gold finishes)
+ * 2. Premium Titanium Card (Stealth Black, Pale Titanium, Gold, Ceramic)
  */
 
 let scene, camera, renderer;
@@ -162,11 +162,11 @@ function createCardTexture(finish = 'stealth') {
   // Laser Engraved Brand Typography (GENTECH)
   ctx.fillStyle = textColor;
   ctx.font = 'bold 84px "Plus Jakarta Sans", sans-serif';
-  ctx.fillText('GENTECH', 1420, 240);
+  ctx.fillText('GENTECH GROUP', 1340, 240, 500);
 
   ctx.fillStyle = accentColor;
   ctx.font = '600 36px "JetBrains Mono", monospace';
-  ctx.fillText('SOVEREIGN TITANIUM', 1340, 295);
+  ctx.fillText('PREMIUM TITANIUM', 1340, 295);
 
   // Cardholder Details
   ctx.fillStyle = subColor;
@@ -175,12 +175,12 @@ function createCardTexture(finish = 'stealth') {
 
   ctx.fillStyle = textColor;
   ctx.font = 'bold 64px "Plus Jakarta Sans", sans-serif';
-  ctx.fillText('ALEXANDER VANCE', 220, 1040);
+  ctx.fillText('YOUR NAME', 220, 1040);
 
-  // Serial & CC EAL6+ Info
+  // Illustrative reference, not a certification claim
   ctx.fillStyle = subColor;
   ctx.font = '500 38px "JetBrains Mono", monospace';
-  ctx.fillText('GT-9482-2026 • CC EAL6+ SECURE ELEMENT', 220, 1140);
+  ctx.fillText('GT-9482-2026 • DESIGN PREVIEW', 220, 1140);
 
   // Holographic Crest Icon
   ctx.strokeStyle = accentColor;
@@ -361,7 +361,12 @@ function init3DScene() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 1000);
 
-  renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
+  } catch (error) {
+    document.getElementById('heroStudioBox')?.classList.add('g-no-webgl');
+    return;
+  }
   renderer.setSize(width, height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -397,7 +402,7 @@ function init3DScene() {
   // Card Mesh (Lazy texture loaded when switched)
   const cardGeo = new THREE.BoxGeometry(4.8, 3.03, 0.08);
   cardSideMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, metalness: 0.95, roughness: 0.2 });
-  cardFrontMat = new THREE.MeshStandardMaterial({
+  cardFrontMat = new THREE.MeshPhysicalMaterial({
     color: 0xffffff,
     metalness: 0.88,
     roughness: 0.22,
@@ -419,7 +424,7 @@ function init3DScene() {
   ringMeshGroup = buildGalaxyRing();
   ringGroup.add(ringMeshGroup);
 
-  setActiveArtifact('ring');
+  setActiveArtifact(currentArtifact);
 
   // Listeners
   window.addEventListener('mousemove', (e) => {
@@ -535,7 +540,7 @@ function animate(now) {
   if (cardGroup && currentArtifact === 'card') {
     cardGroup.rotation.y += (targetRotationY - cardGroup.rotation.y) * 0.06;
     cardGroup.rotation.x += (targetRotationX - cardGroup.rotation.x) * 0.06;
-    cardGroup.position.y = Math.sin(time * 0.7) * 0.07;
+    cardGroup.position.y = window.matchMedia('(prefers-reduced-motion:reduce)').matches ? 0 : Math.sin(time * 0.7) * 0.07;
   }
 
   if (ringGroup && currentArtifact === 'ring') {
@@ -573,6 +578,7 @@ function schedule3DInit() {
           init3DScene();
         } else if (++retries > 25) {
           clearInterval(checkThree);
+          document.getElementById('heroStudioBox')?.classList.add('g-no-webgl');
         }
       }, 100);
     }
