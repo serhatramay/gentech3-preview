@@ -53,6 +53,10 @@ assert HERO in ' '.join(home.text) and INTRO in ' '.join(home.text)
 assert 'canvas3D' not in home.ids
 assert 'canvas3D' in docs['solutions-cards.html'].ids
 assert 'configurator' in docs['solutions-cards.html'].ids
+for name in ['index.html','chairman.html']:
+    html=(ROOT/name).read_text()
+    assert '<p class="g-attribution-name" translate="no"><strong>Mustafa Sertkaya</strong></p><p class="g-attribution-role">Chairman, Gentech Group</p>' in html,f'{name}: chairman attribution must use separate translation blocks'
+    assert '<strong>Mustafa Sertkaya</strong><br>' not in html,f'{name}: fragile inline attribution returned'
 for name in ['index.html','contact.html','about.html','legal.html']:
     text=' '.join(docs[name].text)
     for h in HUBS:
