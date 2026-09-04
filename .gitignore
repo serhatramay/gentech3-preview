@@ -3,3 +3,10 @@ __pycache__/
 .DS_Store
 docs/qa/*.png
 docs/qa/*.json
+server/contact/vendor/
+server/contact/config.php
+server/contact/var/
+server/contact/*.zip
+.env
+.env.*
+!.env.example

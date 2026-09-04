@@ -1,0 +1,11 @@
+{
+  "name": "gentech/contact-preview",
+  "description": "Isolated SMTP endpoint for the Gentech GitHub preview",
+  "require": {
+    "php": ">=8.2",
+    "ext-openssl": "*",
+    "ext-json": "*",
+    "phpmailer/phpmailer": "^7.0"
+  },
+  "config": { "allow-plugins": false, "sort-packages": true }
+}

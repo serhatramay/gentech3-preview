@@ -3,6 +3,7 @@ exclude:
   - "*.py"
   - site
   - docs
+  - server
   - README.md
   - DEPLOYMENT_GUIDE.md
   - vercel.json

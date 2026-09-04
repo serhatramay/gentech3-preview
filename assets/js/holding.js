@@ -78,7 +78,7 @@
   }));
 
   const form = document.getElementById('enquiryForm');
-  if (form) {
+  if (form && !form.dataset.endpoint) {
     const params = new URLSearchParams(location.search);
     const department = document.getElementById('department');
     if ([...department.options].some(o => o.value === params.get('dept'))) department.value = params.get('dept');

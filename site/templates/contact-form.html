@@ -1,0 +1,13 @@
+<div class="g-split g-contact-layout"><div><h3>Tell us what you have in mind.</h3><p>Your enquiry is sent to <a href="mailto:info@gentech.ae">info@gentech.ae</a> through our secure test service. No email application is needed.</p><p>The selected topic helps our team route your enquiry. This preview does not create a CRM record or send an automatic reply to you.</p><p>Please do not include card numbers, passwords or confidential documents.</p></div>
+<form id="enquiryForm" data-endpoint="{{ENDPOINT}}">
+<fieldset id="enquiryFields" style="border:0;padding:0;margin:0;min-width:0">
+<div class="g-form-row"><div><label for="fullName">Full name</label><input id="fullName" name="name" autocomplete="name" maxlength="100" required></div><div><label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" maxlength="180" required></div></div>
+<label for="company">Company <span>(optional)</span></label><input id="company" name="company" autocomplete="organization" maxlength="160">
+<label for="department">Enquiry topic</label><select id="department" name="department">{{OPTIONS}}</select>
+<label for="message">How can we help?</label><textarea id="message" name="message" rows="5" minlength="10" maxlength="2500" required></textarea>
+<div aria-hidden="true" style="position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden"><label for="website">Leave this field empty</label><input id="website" name="website" autocomplete="off" tabindex="-1"></div>
+<label class="g-consent"><input type="checkbox" name="consent" id="consent" required><span>I have read the <a href="privacy.html">privacy notice</a> and agree to use these details for responding to my enquiry.</span></label>
+<button class="g-button" id="sendEnquiry" type="submit">Send enquiry <span aria-hidden="true">↗</span></button>
+</fieldset><div id="enquiryResult" class="g-form-result" role="status" aria-live="polite" hidden></div>
+<noscript><p>This form needs JavaScript. Please email <a href="mailto:info@gentech.ae">info@gentech.ae</a> directly.</p></noscript>
+</form></div>
