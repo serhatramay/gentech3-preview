@@ -14,15 +14,33 @@
 @media(max-width:700px){.g-site .hero-3d-box{height:520px!important}}
 /* Desktop reading size: keep heading and mobile typography unchanged. */
 @media(min-width:1001px){
-  .g-model p,.g-platform p,.g-feature-copy>p,.g-portfolio p,.g-news-row p,.g-form-result p{font-size:15px;line-height:1.7;color:#62574e}
-  .g-model strong{font-size:15px}
+  .g-model p,.g-platform p,.g-feature-copy>p,.g-portfolio p,.g-news-row p,.g-form-result p{font-size:16px;line-height:1.7;color:#62574e}
+  .g-model strong{font-size:16px}
   .g-section-heading>p,.g-partnership p,.g-contact-cta p,.g-split p,.g-capability p,.g-card p,.g-note p{font-size:16px;line-height:1.7;color:#62574e}
   .g-lead{font-size:19px;line-height:1.75;color:#62574e}
   .g-split .g-lead{font-size:20px;line-height:1.75}
   .g-prose p,.g-prose address{font-size:17px;line-height:1.8;color:#62574e}
-  .g-caption,.g-feature-copy .g-caption,.g-hub-role,.g-hub address,.g-vision .g-caption{font-size:14px;line-height:1.7;color:#62574e}
-  .g-network .g-caption{font-size:13px;line-height:1.7}
-  .g-metrics span,.g-inline-facts span{font-size:13px;line-height:1.6}
+  .g-caption,.g-feature-copy .g-caption,.g-hub-role,.g-hub address,.g-vision p,.g-vision .g-caption{font-size:16px;line-height:1.7;color:#62574e}
+  .g-network .g-caption{font-size:15px;line-height:1.7}
+  .g-metrics span,.g-inline-facts span{font-size:14px;line-height:1.6}
   .g-address-panel address{font-size:16px;line-height:1.7}
+  .g-vision .g-attribution-name{font-size:18px}
+  .g-hub{display:flex;flex-direction:column;min-width:0}
+  .g-hub-role{min-height:55px}
+  .g-hub>strong{font-size:15px;line-height:1.6;min-height:48px}
+  .g-hub address{min-height:0;max-width:none}
+  .g-hub .g-text-link{margin-top:auto;align-self:flex-start}
+  .g-text-link,.g-hub .g-text-link,.g-button,.g-address-panel>a{font-size:16px;line-height:1.6}
+  .g-eyebrow,.g-hub .g-eyebrow,.g-card .g-eyebrow,.g-news-row .g-eyebrow,.g-index{font-size:14px;letter-spacing:.08em}
+  .g-feature-art>span,.g-portfolio>div::after{font-size:14px;letter-spacing:.04em;line-height:1.5;max-width:calc(100% - 40px)}
+  .g-nav,.g-dropdown a{font-size:14px}
+  .g-dropdown{min-width:300px}.g-wide{min-width:375px}
+  .g-footer p,.g-footer-links,.g-footer-bottom{font-size:14px;line-height:1.7}
+  .g-footer-bottom{flex-wrap:wrap}.g-footer-bottom nav{flex-wrap:wrap}
+  .g-address-panel strong{font-size:16px}
+  .g-site label,.g-consent,.g-config-controls legend{font-size:15px;line-height:1.7}
+  .g-site input,.g-site select,.g-site textarea,.g-form-result,.g-form-result textarea{font-size:16px;line-height:1.6}
+  .g-materials button,.g-site .toolbar-btn,.g-site .finish-pill-btn{font-size:14px}
+  .g-site .studio-toolbar,.g-site .finish-selector{flex-wrap:wrap}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.g-platform:hover{transform:none}}
