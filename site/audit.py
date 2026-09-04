@@ -19,7 +19,7 @@ class Document(HTMLParser):
         if tag=='section' and 'id' in a:self.sections.append(a['id'])
         if tag=='link' and a.get('rel')=='canonical':self.canonicals.append(a['href'])
         if tag=='meta':self.metas[a.get('name',a.get('property',''))]=a.get('content','')
-        if tag=='script' and a.get('src'):self.scripts.append(a['src'])
+        if tag=='script' and a.get('src'):self.scripts.append(urlsplit(a['src']).path)
         if tag=='img':assert a.get('alt'),f'{self.path.name}: image missing alt'
         for key in ('href','src'):
             if key in a:self.links.append(a[key])

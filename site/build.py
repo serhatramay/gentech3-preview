@@ -4,6 +4,7 @@ from pathlib import Path
 from html import escape as e
 import argparse
 import json
+from hashlib import sha256
 from content import HUBS, PLATFORMS, MODEL, POSITION, HERO, INTRO, PROGRAM, ARCHITECTURE
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -59,9 +60,12 @@ def footer():
 def page(file, title, desc, body, studio=False):
     canonical = 'https://gentech.ae/' + ('' if file == 'index.html' else file)
     schema = dict(**{'@context':'https://schema.org','@type':'Organization'},name='Gentech Group',url='https://gentech.ae/',email='info@gentech.ae',location=[{'@type':'Place','name':h['name'],'address':h['address']} for h in HUBS])
-    scripts = '<script defer src="assets/js/holding.js"></script>'
+    def versioned_script(path):
+        version = sha256((ROOT/path).read_bytes()).hexdigest()[:12]
+        return f'<script defer src="{path}?v={version}"></script>'
+    scripts = versioned_script('assets/js/holding.js')
     if file == 'contact.html' and contact_endpoint:
-        scripts += '<script defer src="assets/js/enquiry.js"></script>'
+        scripts += versioned_script('assets/js/enquiry.js')
     if studio:
         scripts += '<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script><script defer src="assets/js/scene3d.js"></script>'
     html = f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)} | Gentech Group</title><meta name="description" content="{e(desc)}"><meta name="robots" content="{"index,follow" if production else "noindex,follow"}"><link rel="canonical" href="{canonical}"><meta property="og:type" content="website"><meta property="og:site_name" content="Gentech Group"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{canonical}"><meta name="theme-color" content="#faf5ef"><link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">{"<link rel=\"stylesheet\" href=\"assets/css/style.css\">" if studio else ""}<link rel="stylesheet" href="assets/css/holding.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script>{scripts}</head><body class="g-site">{header()}<main id="main">{body}</main>{footer()}</body></html>\n'
