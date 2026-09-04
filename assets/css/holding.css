@@ -12,4 +12,17 @@
 .g-site .toolbar-btn.active{background:var(--g-orange);color:white}.g-site .finish-pill-btn.active{background:var(--g-ink);color:white}.g-site .finish-pill-btn:focus-visible,.g-site .toolbar-btn:focus-visible{outline:3px solid var(--g-orange);outline-offset:3px}
 .g-portfolio>div{position:relative;background:#e7ded4}.g-portfolio img{object-fit:contain}.g-portfolio>div::after{content:'ILLUSTRATIVE PRODUCT DESIGN';position:absolute;bottom:10px;left:10px;background:var(--g-bg);color:var(--g-muted);padding:4px 7px;font-size:8px;letter-spacing:.06em}.g-feature-art>span{max-width:calc(100% - 40px)}
 @media(max-width:700px){.g-site .hero-3d-box{height:520px!important}}
+/* Desktop reading size: keep heading and mobile typography unchanged. */
+@media(min-width:1001px){
+  .g-model p,.g-platform p,.g-feature-copy>p,.g-portfolio p,.g-news-row p,.g-form-result p{font-size:15px;line-height:1.7;color:#62574e}
+  .g-model strong{font-size:15px}
+  .g-section-heading>p,.g-partnership p,.g-contact-cta p,.g-split p,.g-capability p,.g-card p,.g-note p{font-size:16px;line-height:1.7;color:#62574e}
+  .g-lead{font-size:19px;line-height:1.75;color:#62574e}
+  .g-split .g-lead{font-size:20px;line-height:1.75}
+  .g-prose p,.g-prose address{font-size:17px;line-height:1.8;color:#62574e}
+  .g-caption,.g-feature-copy .g-caption,.g-hub-role,.g-hub address,.g-vision .g-caption{font-size:14px;line-height:1.7;color:#62574e}
+  .g-network .g-caption{font-size:13px;line-height:1.7}
+  .g-metrics span,.g-inline-facts span{font-size:13px;line-height:1.6}
+  .g-address-panel address{font-size:16px;line-height:1.7}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.g-platform:hover{transform:none}}
